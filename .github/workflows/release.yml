@@ -32,7 +32,7 @@ jobs:
       - name: Sign for Firefox (unlisted)
         if: startsWith(github.ref, 'refs/tags/v') && env.AMO_JWT_ISSUER != ''
         run: npx web-ext sign --source-dir build/firefox --artifacts-dir dist --channel unlisted --api-key "$AMO_JWT_ISSUER" --api-secret "$AMO_JWT_SECRET"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: steady-volume
           path: dist/*
