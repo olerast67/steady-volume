@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="color-scheme" content="light dark">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <img src="../icons/icon-32.png" width="24" height="24" alt="">
+    <h1 data-i18n="extShortName"></h1>
+    <label class="switch" title="">
+      <input type="checkbox" id="enabled">
+      <span></span>
+    </label>
+  </header>
+
+  <main id="controls">
+    <section>
+      <div class="row">
+        <label for="volume" data-i18n="volume"></label>
+        <output id="volumeOut" for="volume"></output>
+      </div>
+      <input type="range" id="volume" min="100" max="600" step="10" list="volumeMarks">
+      <datalist id="volumeMarks">
+        <option value="100"></option><option value="200"></option><option value="300"></option>
+        <option value="400"></option><option value="500"></option><option value="600"></option>
+      </datalist>
+    </section>
+
+    <section>
+      <div class="row"><span data-i18n="leveling"></span></div>
+      <div class="segmented" role="radiogroup" id="leveling">
+        <button type="button" role="radio" data-value="0" data-i18n="levelOff"></button>
+        <button type="button" role="radio" data-value="1" data-i18n="levelLight"></button>
+        <button type="button" role="radio" data-value="2" data-i18n="levelMedium"></button>
+        <button type="button" role="radio" data-value="3" data-i18n="levelStrong"></button>
+      </div>
+      <p class="hint" id="levelHint"></p>
+    </section>
+
+    <section class="toggles">
+      <label class="toggle">
+        <span><span data-i18n="dialog"></span><small data-i18n="dialogHint"></small></span>
+        <span class="switch"><input type="checkbox" id="dialog"><span></span></span>
+      </label>
+      <label class="toggle">
+        <span><span data-i18n="site"></span><small id="host"></small></span>
+        <span class="switch"><input type="checkbox" id="site"><span></span></span>
+      </label>
+    </section>
+  </main>
+
+  <footer>
+    <div id="meter" hidden><div id="meterBar"></div></div>
+    <p id="status"></p>
+    <p class="hint" data-i18n="statusReload"></p>
+    <a href="https://github.com/Erop404iv/steady-volume" target="_blank" rel="noopener" data-i18n="sourceCode"></a>
+  </footer>
+  <script src="popup.js"></script>
+</body>
+</html>

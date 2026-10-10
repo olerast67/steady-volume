@@ -1,0 +1,13 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Steady Volume test player</title>
+<style>body { font: 15px system-ui; max-width: 640px; margin: 24px auto; padding: 0 16px; } audio { width: 100%; }</style>
+<h1>Test player</h1>
+<p>Same origin: 12 s quiet dialog, 12 s loud action, 12 s quiet dialog. With leveling on, the three parts should sound about equally loud.</p>
+<audio id="same" controls src="movie.wav"></audio>
+<p>Cross-origin without CORS (open this page on 127.0.0.1, the file loads from localhost). The extension must leave it alone, the sound must not disappear.</p>
+<audio id="cross" controls></audio>
+<script>
+  const other = location.hostname === 'localhost' ? '127.0.0.1' : 'localhost';
+  document.getElementById('cross').src = `http://${other}:${location.port}/test/movie.wav`;
+</script>

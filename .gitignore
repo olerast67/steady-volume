@@ -1,0 +1,5 @@
+node_modules/
+dist/
+web-ext-artifacts/
+test/movie.wav
+.amo-upload-uuid
