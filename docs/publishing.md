@@ -105,4 +105,6 @@ Single purpose: Boosts and levels the volume of video and audio played on web pa
 
 ## Скриншоты для магазинов
 
+Первым скриншотом в магазине стоит `docs/store/store-real-youtube.png`: настоящее окно расширения поверх ролика на YouTube в Firefox, 1280×800. За ним идут `store-ru.png` или `store-en.png` с тонкой настройкой.
+
 `python scripts/store-assets.py` после `node scripts/screenshots.mjs msedge` собирает из скриншотов окна расширения картинки 1280×800 для магазинов и превью репозитория 1280×640 в `docs/store/`.

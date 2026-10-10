@@ -8,7 +8,7 @@
 
 A browser extension that boosts video volume up to 600% and levels loudness. Quiet film dialog goes up, explosions and music go down, and a limiter on the output keeps the boosted sound from distorting. It works in Chrome, Edge, Yandex Browser, Opera, Brave and Firefox, processes sound inside the browser and sends nothing anywhere.
 
-<img src="docs/popup-en.png" width="320" alt="Extension popup: volume, Off, Light, Auto and Night modes">
+![The extension popup over a YouTube video in Firefox, Auto mode, Russian interface](docs/screenshot-youtube.jpg)
 
 I made it for watching films and series in the browser. Their dialog is mixed quietly and the action loudly, and at home I kept reaching for the volume.
 
