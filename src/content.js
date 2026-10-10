@@ -5,9 +5,6 @@
 (() => {
   const api = globalThis.browser ?? globalThis.chrome;
   const DEFAULTS = { enabled: true, volume: 100, leveling: 2, dialog: false, custom: {}, disabledSites: [] };
-  // Firefox content scripts fetch with extension privileges; content.fetch() makes the request as the page does,
-  // so the CORS probe below gives the same answer the media element will get.
-  const pageFetch = globalThis.content?.fetch ? globalThis.content.fetch.bind(globalThis.content) : fetch;
 
   // Open a page with #steady-volume-debug to see the live status in <html data-steady-volume> (used by test/e2e-firefox.mjs).
   const DEBUG = location.hash === '#steady-volume-debug';
@@ -16,12 +13,14 @@
   let ctx = null;
   let engine = null;
   let timer = null;
+  let captured = false;            // the whole tab is processed by the background capture (Chromium)
   const sources = new WeakMap();   // element → MediaElementAudioSourceNode
   const hooked = new Set();        // elements routed through the engine (for status)
   const waiting = new Set();       // elements waiting for a user gesture to start the AudioContext
   const blocked = new Map();       // element → reason it was left alone
-  const probed = new WeakSet();    // elements already checked for CORS on their media server
-  const upgraded = new WeakSet();  // elements we switched to crossorigin="anonymous"
+  const upgradeTried = new WeakSet(); // elements already reloaded with crossorigin once
+  const upgraded = new WeakSet();     // elements we switched to crossorigin="use-credentials"
+  const shadowRoots = new WeakSet();  // shadow roots that already have our play listener
 
   // Per-site switch is keyed by the tab's top-level host, also inside cross-origin player iframes.
   const topHost = (() => {
@@ -33,6 +32,7 @@
   })();
 
   const siteOn = () => settings.enabled && !settings.disabledSites.includes(topHost);
+  const processing = () => siteOn() && !captured;
 
   // Reasons Web Audio would output silence instead of the element's sound.
   function unsafeReason(el) {
@@ -52,7 +52,7 @@
     if (engine) return;
     ctx = new AudioContext({ latencyHint: 'interactive' });
     engine = new LevelerEngine(ctx);
-    engine.apply({ ...settings, enabled: siteOn() });
+    engine.apply({ ...settings, enabled: processing() });
   }
 
   async function contextRunning() {
@@ -63,26 +63,26 @@
     return ctx.state === 'running';
   }
 
-  // Cross-origin file without crossorigin attribute: if its server sends CORS headers, reload the element
-  // with crossorigin="anonymous" at the same position, after which Web Audio can process it.
+  // Cross-origin file without crossorigin attribute. The background adds CORS headers for this page and
+  // this media server (only for media requests), then the element is reloaded with crossorigin at the same
+  // position and Web Audio may process it. use-credentials keeps sending the cookies the player sent before.
   async function corsUpgrade(el) {
-    if (probed.has(el) || !el.hasAttribute('src')) return false;
-    probed.add(el);
+    if (upgradeTried.has(el)) return false;
+    upgradeTried.add(el);
     const src = el.currentSrc;
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 4000);
-    let ok = false;
+    const hadSrcAttr = el.hasAttribute('src');
     try {
-      const r = await pageFetch(src, { mode: 'cors', credentials: 'omit', cache: 'no-store', signal: ctrl.signal });
-      ok = r.ok;
-    } catch {}
-    clearTimeout(timer);
-    ctrl.abort(); // headers are enough, don't download the file
-    if (!ok || el.currentSrc !== src) return false;
+      const r = await api.runtime.sendMessage({ type: 'allowCors', mediaUrl: src, pageOrigin: location.origin });
+      if (!r?.ok) return false;
+    } catch {
+      return false;
+    }
+    if (el.currentSrc !== src) return false;
 
     const time = el.currentTime;
     const rate = el.playbackRate;
     const wasPlaying = !el.paused;
+    const reload = () => { if (hadSrcAttr) el.src = src; else el.load(); };
     const restore = () => {
       try { el.currentTime = time; } catch {}
       el.playbackRate = rate;
@@ -92,10 +92,11 @@
       const done = (success) => {
         clearTimeout(guard);
         el.removeEventListener('loadedmetadata', onMeta);
-        el.removeEventListener('error', onError);
+        el.removeEventListener('error', onError, true);
         if (!success) {
+          upgraded.delete(el);
           el.removeAttribute('crossorigin');
-          el.src = src;
+          reload();
         }
         restore();
         resolve(success);
@@ -104,16 +105,16 @@
       const onError = () => done(false);
       const guard = setTimeout(onError, 8000);
       el.addEventListener('loadedmetadata', onMeta);
-      el.addEventListener('error', onError);
+      el.addEventListener('error', onError, true); // capture: errors of <source> children too
       upgraded.add(el);
-      el.crossOrigin = 'anonymous';
-      el.src = src;
+      el.crossOrigin = 'use-credentials';
+      reload();
     });
   }
 
   async function attach(el) {
     if (sources.has(el) || !el.isConnected && el.paused) return;
-    if (!siteOn()) return;
+    if (!processing()) return;
     let reason = unsafeReason(el);
     if (reason === 'cors' && await corsUpgrade(el)) reason = unsafeReason(el);
     if (sources.has(el)) return;
@@ -163,21 +164,51 @@
     }, LevelerEngine.TICK_SECONDS * 1000);
   }
 
-  function scan() {
-    for (const el of document.querySelectorAll('video, audio')) {
-      if (!el.paused) attach(el);
+  // Players built as web components (VK Video and others) keep <video> inside a shadow root, where the
+  // document never sees its events. Closed roots are reachable from content scripts through these APIs.
+  // (Chromium: chrome.dom.openOrClosedShadowRoot(el); Firefox: the el.openOrClosedShadowRoot property.)
+  // The Chromium API is looked up by name: Firefox has no chrome.dom and its linter flags the direct call.
+  const domApi = globalThis.chrome?.['dom'];
+  const shadowOf = domApi?.openOrClosedShadowRoot
+    ? (el) => domApi.openOrClosedShadowRoot(el)
+    : (el) => ('openOrClosedShadowRoot' in el ? el.openOrClosedShadowRoot : el.shadowRoot);
+
+  const onPlay = (e) => {
+    const el = e.composedPath ? e.composedPath()[0] : e.target;
+    if (el instanceof HTMLMediaElement) attach(el);
+  };
+
+  function scan(root = document) {
+    for (const el of root.querySelectorAll('*')) {
+      if (el instanceof HTMLMediaElement) {
+        if (!el.paused) attach(el);
+        continue;
+      }
+      const sr = el.localName.includes('-') || el.shadowRoot ? shadowOf(el) : null;
+      if (!sr) continue;
+      if (!shadowRoots.has(sr)) {
+        shadowRoots.add(sr);
+        sr.addEventListener('play', onPlay, true);
+      }
+      scan(sr);
     }
   }
 
   function applySettings() {
-    if (engine) engine.apply({ ...settings, enabled: siteOn() });
-    if (siteOn()) scan();
+    if (engine) engine.apply({ ...settings, enabled: processing() });
+    if (processing()) scan();
   }
 
   // Media events don't bubble, but the capture phase on the document still sees them.
-  document.addEventListener('play', (e) => {
-    if (e.target instanceof HTMLMediaElement) attach(e.target);
-  }, true);
+  document.addEventListener('play', onPlay, true);
+  // Shadow roots appear while the page builds its player, so look for new ones now and then.
+  setInterval(() => { if (processing()) scan(); }, 2000);
+
+  // Whole-tab capture runs in the background (Chromium); the page's own elements then pass through unchanged.
+  api.runtime.sendMessage({ type: 'isCaptured' }).then((r) => {
+    captured = !!r?.on;
+    applySettings();
+  }, () => {});
 
   api.storage.sync.get(DEFAULTS).then((stored) => {
     settings = { ...DEFAULTS, ...stored };
@@ -200,7 +231,7 @@
       playing: playing.length,
       waiting: waiting.size,
       blocked: reasons,
-      gainDb: engine && siteOn() && engine.preset ? engine.gainDb : 0,
+      gainDb: engine && processing() && engine.preset ? engine.gainDb : 0,
       loudness: engine ? engine.shortTerm : -Infinity, // 3 s window: steadier to read than momentary
       limiter: engine ? engine.limiterReduction() : 0,
     };
@@ -210,6 +241,11 @@
 
   // Popup asks for status. Only frames that have met media answer, so the popup hears from the one that matters.
   api.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
+    if (msg?.type === 'capture') {
+      captured = msg.on;
+      applySettings();
+      return;
+    }
     if (msg?.type !== 'status') return;
     const s = status();
     if (s) sendResponse(s);

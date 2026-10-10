@@ -68,24 +68,29 @@ try {
   s = await status();
   check('dialog after action recovers', s?.gainDb > 3, `gainDb=${s?.gainDb?.toFixed(1)}`);
 
-  // cross-origin without CORS: must be left alone and keep playing
-  await page.evaluate(() => { document.getElementById('same').pause(); document.getElementById('cross').play(); });
-  await sleep(1500);
-  const t0 = await page.evaluate(() => document.getElementById('cross').currentTime);
-  await sleep(1000);
-  const t1 = await page.evaluate(() => document.getElementById('cross').currentTime);
-  s = await status();
-  check('cross-origin media not hooked', s?.blocked.includes('cors') && s.active === 1, JSON.stringify(s?.blocked));
-  check('cross-origin media still plays', t1 > t0, `${t0.toFixed(2)} -> ${t1.toFixed(2)}`);
-
-  // cross-origin with CORS headers on the server: reloaded with crossorigin at the same position and processed
-  await page.evaluate(() => { const c = document.getElementById('cross'); c.pause(); const a = document.getElementById('crossCors'); a.currentTime = 5; a.play(); });
+  // cross-origin without CORS headers: the header rule lets it be processed, playback continues from its position
+  await page.evaluate(() => { document.getElementById('same').pause(); const a = document.getElementById('cross'); a.currentTime = 5; a.play(); });
   await sleep(3000);
-  const cc = await page.evaluate(() => { const a = document.getElementById('crossCors'); return { co: a.crossOrigin, t: a.currentTime, paused: a.paused }; });
+  let el = await page.evaluate(() => { const a = document.getElementById('cross'); return { co: a.crossOrigin, t: a.currentTime, paused: a.paused }; });
   s = await status();
-  check('CORS-enabled cross-origin media upgraded', cc.co === 'anonymous' && s?.active === 2, JSON.stringify({ ...cc, active: s?.active }));
-  check('upgraded media resumed at its position', !cc.paused && cc.t > 5, `t=${cc.t.toFixed(2)}`);
-  await page.evaluate(() => document.getElementById('crossCors').pause());
+  check('non-CORS cross-origin media connected via header rule', el.co === 'use-credentials' && s?.active === 2 && !s.blocked.length, JSON.stringify({ ...el, active: s?.active, blocked: s?.blocked }));
+  check('its sound reaches the processing (not silence)', s?.loudness > -50, `loudness=${s?.loudness}`);
+  check('it resumed at its position and plays', !el.paused && el.t > 5, `t=${el.t.toFixed(2)}`);
+
+  // server already sends CORS headers
+  await page.evaluate(() => { document.getElementById('cross').pause(); const a = document.getElementById('crossCors'); a.currentTime = 5; a.play(); });
+  await sleep(3000);
+  el = await page.evaluate(() => { const a = document.getElementById('crossCors'); return { co: a.crossOrigin, t: a.currentTime, paused: a.paused }; });
+  s = await status();
+  check('CORS cross-origin media connected', el.co === 'use-credentials' && s?.active === 3, JSON.stringify({ ...el, active: s?.active }));
+
+  // player inside a closed shadow root
+  await page.evaluate(() => { document.getElementById('crossCors').pause(); window.shadowAudio.play(); });
+  await sleep(3500);
+  s = await status();
+  check('media in closed shadow root connected', s?.active === 4 && s.playing === 1, JSON.stringify({ active: s?.active, playing: s?.playing }));
+  check('shadow root media sound reaches the processing', s?.loudness > -50, `loudness=${s?.loudness}`);
+  await page.evaluate(() => window.shadowAudio.pause());
 
   // settings: turn the site off through storage, the engine must go to bypass without a reload
   const extId = await inExt('chrome.runtime.id');

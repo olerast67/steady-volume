@@ -1,13 +1,13 @@
 {
   "name": "steady-volume",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "Browser extension that boosts and levels the volume of video and audio on any site",
   "license": "MIT",
   "scripts": {
-    "lint": "web-ext lint --source-dir src",
-    "build": "web-ext build --source-dir src --artifacts-dir dist --overwrite-dest --filename steady-volume-{version}.zip",
-    "start:firefox": "web-ext run --source-dir src --start-url http://127.0.0.1:8765/test/player.html",
+    "lint": "node scripts/build.mjs --lint",
+    "build": "node scripts/build.mjs",
+    "start:firefox": "node scripts/build.mjs && web-ext run --source-dir build/firefox --start-url http://127.0.0.1:8765/test/player.html",
     "icons": "python scripts/make-icons.py",
     "serve": "node test/serve.mjs"
   },

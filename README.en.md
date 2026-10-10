@@ -18,6 +18,8 @@ I made it for watching films and series in the browser. Their dialog is mixed qu
 2. Play a video. The extension connects on its own in Auto mode, nothing needs setting up.
 3. If the sound is still quiet, move the Volume slider. At night switch to Night mode.
 
+When the extension cannot connect to a video directly, for example on a DRM-protected site, Chrome, Edge, Yandex Browser, Opera and Brave let it process the sound of the whole tab. Capture starts by itself when you open the popup, with the "Process the whole tab's sound" button, or with Alt+Shift+V.
+
 The popup opens from the extension icon on the browser toolbar. If the icon is hidden, click the puzzle icon to the right of the address bar and pin Steady Volume.
 
 ## Installing
@@ -26,7 +28,7 @@ While the extension is in store review, install it from the archive. It takes ab
 
 ### Chrome, Edge, Yandex Browser, Opera, Brave
 
-1. Download `steady-volume-<version>.zip` from the [latest release](https://github.com/olerast67/steady-volume/releases/latest) and unpack it into a folder you will keep. Deleting the folder removes the extension from the browser.
+1. Download `steady-volume-<version>-chromium.zip` from the [latest release](https://github.com/olerast67/steady-volume/releases/latest) and unpack it into a folder you will keep. Deleting the folder removes the extension from the browser.
 2. Open the extensions page by typing its address into the address bar:
 
    | Browser | Address |
@@ -43,7 +45,7 @@ On every start Chrome offers to disable developer mode extensions. Click Cancel 
 
 ### Firefox
 
-Firefox 140 or newer is required. Firefox installs from a file only extensions signed by Mozilla. A signed `.xpi` will appear in the releases after the addons.mozilla.org review. Until then you can load it until the browser restarts: `about:debugging` → "This Firefox" → "Load Temporary Add-on" → `manifest.json` from the unpacked archive.
+Firefox 140 or newer is required. Firefox installs from a file only extensions signed by Mozilla. A signed `.xpi` will appear in the releases after the addons.mozilla.org review. Until then you can load it until the browser restarts: download `steady-volume-<version>-firefox.zip`, unpack it, open `about:debugging` → "This Firefox" → "Load Temporary Add-on" and select `manifest.json`.
 
 ## Modes and settings
 
@@ -75,42 +77,49 @@ The extension waits for a `<video>` or `<audio>` element to start playing and co
 
 I built the chain from built-in Web Audio nodes only and left out `AudioWorklet`. An `AudioWorklet` module loads as a separate script, and on sites with a strict CSP, YouTube for one, the browser may block it.
 
-Many players load the video file from a content delivery server on another domain. The browser lets an extension process the sound of such a file only if the server allows it with CORS headers. The extension sends one request to the server and reads the headers. If CORS is allowed, it reloads the video with the `crossorigin` attribute at the same second and connects it. If not, the video plays unprocessed.
+Many players load the video file from a content delivery server on another domain. The browser lets an extension process the sound of such a file only if the server response allows it with CORS headers. The extension adds these headers with a `declarativeNetRequest` rule. The rule covers one pair of this site and this server, and only requests made by `<video>` and `<audio>` elements. Then the extension reloads the video with the `crossorigin` attribute at the same second and connects it. Embedded VK Video players on other sites work this way.
+
+Web-component players keep `<video>` inside a Shadow DOM, where page events do not reach. The extension finds such players, closed Shadow DOM included, every 2 seconds and when a video starts.
+
+The browser hands the sound of DRM-protected video to extensions as silence. For that case Chromium browsers have whole-tab capture through `tabCapture`. While capture is on, the tab is heard only through the extension: the sound goes to a separate extension document, passes the same chain and goes out to the speakers. Firefox has no tab capture.
 
 ## Where it works and where it does not
 
-The extension works with players that play through `<video>` and `<audio>`. That includes YouTube, HLS and DASH players, and files from servers that allow CORS. I tested it on YouTube and on the test pages in the `test` folder.
+| What plays | Chromium (Chrome, Edge, Yandex, Opera, Brave) | Firefox |
+|---|---|---|
+| YouTube, HLS and DASH players | yes | yes |
+| Files from a CDN on another domain, embedded VK Video players | yes | yes |
+| Players in Shadow DOM | yes | yes |
+| DRM-protected video (Netflix, paid streaming) | through tab capture | no |
+| Sound without `<video>` or `<audio>` (browser games, sites with their own Web Audio processing) | through tab capture | no |
+| Calls and voice chats (Google Meet, Discord) | skipped | skipped |
+| Browser pages and extension stores | no | no |
 
-The extension does not process:
-
-- DRM-protected video, the protection Netflix and paid streaming services use for films. The browser hands the sound of such video to extensions as silence, so the extension leaves it alone and it plays unprocessed.
-- Video from a server that does not allow CORS. The popup shows a note.
-- Calls and voice chats (Google Meet, Discord). Elements playing a WebRTC stream are skipped.
-- Sites that connect the video to their own Web Audio processing.
-- Sound a site plays without `<video>` or `<audio>`, for example in browser games.
-- Browser settings pages and extension stores.
+I tested tab capture on a dash.js sample video encrypted with ClearKey. It uses the same EME mechanism as Netflix and paid streaming protection, with an open key. I have not tested it on Netflix itself. For embedded VK Video players I checked how their requests work: the live VK player shows a bot check to an automated browser.
 
 If a site loses its sound, turn the extension off for that site with the On this site switch, reload the page and open an issue with the page address.
 
 ## Questions
 
-Why doesn't it work on Netflix? Netflix encrypts its video (DRM), and the browser closes access to its sound for extensions. An extension cannot get around this. For such services use system-wide processing: on Windows that is Loudness Equalization in the speaker properties or Equalizer APO with a compressor.
+Does it work on Netflix? In Chromium browsers it should, through tab capture: open the popup while watching and capture starts by itself. I have not tested it on Netflix. In Firefox it does not. There, use system-wide processing: on Windows that is Loudness Equalization in the speaker properties or Equalizer APO with a compressor.
 
 Does it work on phones? The manifest supports Firefox for Android 142 and newer. I have not tested it on a phone.
 
-Is the sound delayed relative to the picture? Web Audio processing adds output latency. I have not measured it; on the test videos I could not hear any offset.
+Is the sound delayed relative to the picture? Web Audio processing adds output latency, and tab capture adds more. I have not measured it; on the test videos I could not hear any offset.
 
-Why access to all sites? Video can appear on any site and inside embedded players from other domains. On a page the extension reads only `<video>` and `<audio>` elements.
+Why access to all sites? Video can appear on any site and inside embedded players from other domains. On a page the extension reads only `<video>` and `<audio>` elements, and the CORS header rules are needed for the servers the players load video from.
 
 ## Privacy
 
-The extension collects no data. It makes a network request in one case: it checks the CORS headers of a video file the page is already loading. Settings are kept in the browser's `storage.sync`. Details are in [PRIVACY.md](PRIVACY.md).
+The extension collects no data and makes no network requests of its own. Settings are kept in the browser's `storage.sync`; the CORS header rules last until the browser closes. Captured tab sound is processed and played straight to the speakers; the extension does not record it. Details are in [PRIVACY.md](PRIVACY.md).
 
 | Permission | Why |
 |---|---|
 | `storage` | Keeps the volume, the mode and the list of sites where it is off |
 | `activeTab` | Lets the popup read the address of the open tab for the On this site switch |
-| Script on all sites (`<all_urls>`) | Connects `<video>` and `<audio>` elements to the processing on any site and inside embedded players |
+| Access to all sites (`<all_urls>`) | The script connects `<video>` and `<audio>` elements to the processing on any site and inside embedded players |
+| `declarativeNetRequestWithHostAccess` | Adds CORS headers to the video server's responses so the browser allows processing their sound |
+| `tabCapture`, `offscreen` (Chromium only) | Captures the tab's sound for DRM-protected video and sites whose players cannot be connected directly |
 
 ## Support the project
 
@@ -132,24 +141,25 @@ The test bench `test/harness.html` renders a synthetic "film" through the chain 
 | Auto | −25.2 | −21.4 | 3.8 dB | −1.2 dB |
 | Night | −22.8 | −19.8 | 3.0 dB | −2.7 dB |
 
-The end-to-end tests install the extension in a browser and play the same file. I ran them on Windows 10 in Edge 155 (`test/e2e.mjs`) and Firefox 157 (`test/e2e-firefox.mjs`). They check that quiet dialog is raised and loud action lowered. Video from another server without CORS must keep playing unprocessed with its sound, and video from a server with CORS must connect and continue from the same second. The tests also switch the site and the fine-tuning from the popup. On YouTube in Edge 155 the extension connected to the video and lowered a loud clip by 4 dB.
+The end-to-end tests install the extension in a browser and play the same file. I ran them on Windows 10 in Edge 155 (`test/e2e.mjs`, `test/e2e-capture.mjs`) and Firefox 157 (`test/e2e-firefox.mjs`). They check that quiet dialog is raised and loud action lowered. Video from another server, with CORS and without, must connect, continue from the same second, and its level at the processing input must be above −50 LUFS. A player in a closed Shadow DOM must connect too. The tests also switch the site and the fine-tuning from the popup and turn tab capture on and off. I also tested tab capture on a ClearKey-encrypted video from the dash.js samples. On YouTube in Edge 155 the extension connected to the video and lowered a loud clip by 4 dB.
 
 ```bash
 npm install
 node test/make-movie.mjs     # writes test/movie.wav
 node test/e2e.mjs msedge     # or chrome, chromium
-node test/e2e-firefox.mjs
+node test/e2e-capture.mjs msedge
+npm run lint && node test/e2e-firefox.mjs
 npm run serve                # bench: http://127.0.0.1:8765/test/harness.html
 ```
 
 ## Building
 
 ```bash
-npm run lint    # checks the manifest and code with web-ext
-npm run build   # archive in dist/, the same one for every browser
+npm run lint    # builds build/chromium and build/firefox, lints the Firefox one with web-ext
+npm run build   # dist/steady-volume-<version>-chromium.zip and -firefox.zip
 ```
 
-One `manifest.json` serves Chromium and Firefox, since Chromium skips the `browser_specific_settings` block. Pushing a `v*` tag makes GitHub Actions build the archive and attach it to a release. If the repository secrets hold AMO keys, the same run signs an `.xpi` for Firefox. Store publishing steps are in [docs/publishing.md](docs/publishing.md).
+`src/manifest.json` is written for Chromium. `scripts/build.mjs` derives the Firefox version from it: a background script without a service worker, no `tabCapture`, `offscreen` or keyboard shortcut. Pushing a `v*` tag makes GitHub Actions build the archive and attach it to a release. If the repository secrets hold AMO keys, the same run signs an `.xpi` for Firefox. Store publishing steps are in [docs/publishing.md](docs/publishing.md).
 
 The extension code was written by Claude from Anthropic to my specification.
 

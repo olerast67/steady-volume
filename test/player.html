@@ -5,11 +5,24 @@
 <h1>Test player</h1>
 <p>Same origin: 12 s quiet dialog, 12 s loud action, 12 s quiet dialog. With leveling on, the three parts should sound about equally loud.</p>
 <audio id="same" controls src="movie.wav"></audio>
-<p>Cross-origin without CORS (open this page on 127.0.0.1, the file loads from localhost). The extension must leave it alone, the sound must not disappear.</p>
+<p>Cross-origin without CORS headers (open this page on 127.0.0.1, the file loads from localhost). The extension adds the headers with a request rule, reloads it with crossorigin and processes it.</p>
 <audio id="cross" controls></audio>
 <p>Cross-origin from a server that sends CORS headers, without a crossorigin attribute. The extension must reload it with crossorigin and process it.</p>
 <audio id="crossCors" controls></audio>
+<p>Player inside a closed shadow root, as in web-component players (VK Video).</p>
+<shadow-player id="shadowHost"></shadow-player>
 <script>
+  customElements.define('shadow-player', class extends HTMLElement {
+    constructor() {
+      super();
+      const root = this.attachShadow({ mode: 'closed' });
+      const audio = document.createElement('audio');
+      audio.controls = true;
+      audio.src = 'movie.wav?shadow';
+      root.append(audio);
+      window.shadowAudio = audio; // for the tests only
+    }
+  });
   const other = location.hostname === 'localhost' ? '127.0.0.1' : 'localhost';
   document.getElementById('cross').src = `http://${other}:${location.port}/test/movie.wav`;
   document.getElementById('crossCors').src = `http://${other}:${location.port}/test/movie.wav?cors=1`;

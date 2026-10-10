@@ -145,5 +145,26 @@
   },
   "report": {
     "message": "Report a problem"
+  },
+  "cmdCapture": {
+    "message": "Process the whole tab's sound (on/off)"
+  },
+  "captureStart": {
+    "message": "Process the whole tab's sound"
+  },
+  "captureStop": {
+    "message": "Stop processing the tab"
+  },
+  "statusCaptured": {
+    "message": "Processing the whole tab. Loudness $1 LUFS, adjustment $2 dB"
+  },
+  "statusCaptureFailed": {
+    "message": "Could not capture the tab's sound: $1"
+  },
+  "statusNoneCapture": {
+    "message": "No sound the extension can connect to on this tab yet. If a video is playing without processing, press the button below."
+  },
+  "statusCaptureHint": {
+    "message": "The extension can't connect to this video directly, so it processes the whole tab's sound."
   }
 }

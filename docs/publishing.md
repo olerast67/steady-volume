@@ -1,6 +1,6 @@
 # Публикация в магазинах
 
-Архив для всех магазинов собирает `npm run build`, он появляется в `dist/steady-volume-<версия>.zip`. Перед каждой публикацией я поднимаю `version` в `src/manifest.json` и `package.json` и ставлю тег `v<версия>`.
+Архивы собирает `npm run build`: `dist/steady-volume-<версия>-chromium.zip` для Chrome Web Store, Edge Add-ons и Opera, `dist/steady-volume-<версия>-firefox.zip` для addons.mozilla.org. Перед каждой публикацией я поднимаю `version` в `src/manifest.json` и `package.json` и ставлю тег `v<версия>`.
 
 | Магазин | Стоимость | Что известно о проверке | Кто получает расширение |
 |---|---|---|---|
@@ -14,7 +14,7 @@
 ## Chrome Web Store
 
 1. Регистрация на https://chrome.google.com/webstore/devconsole и оплата взноса.
-2. «New item» → архив из `dist/`.
+2. «New item» → `steady-volume-<версия>-chromium.zip`.
 3. Store listing: тексты из раздела «Тексты для магазинов», категория Tools, языки English и Русский, иконка `docs/icon-512.png` (магазин просит 128×128, её можно взять из `src/icons/icon-128.png`), минимум один скриншот 1280×800 или 640×400.
 4. Privacy practices: single purpose и обоснования разрешений из раздела ниже, на вопрос о сборе данных отвечать «не собирает», Privacy policy URL указывает на `PRIVACY.md` в репозитории.
 
@@ -25,7 +25,7 @@
 ## Firefox (AMO)
 
 1. Аккаунт на https://addons.mozilla.org/developers/.
-2. Для публикации в каталоге: «Submit a New Add-on» → «On this site» → архив из `dist/`. AMO может попросить исходный код, если он собран инструментами; здесь код в архиве совпадает с исходниками, сборки нет.
+2. Для публикации в каталоге: «Submit a New Add-on» → «On this site» → `steady-volume-<версия>-firefox.zip`. AMO может попросить исходный код, если он собран инструментами; здесь код в архиве совпадает с исходниками, сборки нет.
 3. Для подписанного `.xpi` на GitHub без каталога: в кабинете AMO «Manage API Keys» выдаёт JWT issuer и JWT secret. Я кладу их в секреты репозитория `AMO_JWT_ISSUER` и `AMO_JWT_SECRET`, после этого workflow `release.yml` подписывает `.xpi` при каждом теге.
 
 В манифесте уже есть всё, что AMO требует для новых расширений с ноября 2025: `browser_specific_settings.gecko.id` и `data_collection_permissions` со значением `none`.
@@ -58,12 +58,12 @@ Settings:
 - Fine-tuning for those who want it: target loudness, compressor threshold and ratio, limiter ceiling, gain recovery time.
 - A switch to turn the extension off on a particular site.
 
-Works with <video> and <audio> players on any site, including YouTube, HLS and DASH players and embedded players.
-
-Does not work with DRM-protected video (Netflix and paid streaming services): the browser does not let extensions process their sound. Calls and voice chats are left untouched.
+Works with <video> and <audio> players on any site, including YouTube, HLS and DASH players, embedded players from other domains and players built as web components. When a video can't be connected directly, for example DRM-protected streaming, the extension processes the sound of the whole tab (open the popup or press Alt+Shift+V). Calls and voice chats are left untouched.
 
 No data collection, no ads, no accounts. Source code (MIT): https://github.com/olerast67/steady-volume
 ```
+
+Для AMO уберите из описания предложение про обработку звука всей вкладки: в Firefox её нет.
 
 ### Полное описание, русский
 
@@ -79,9 +79,7 @@ No data collection, no ads, no accounts. Source code (MIT): https://github.com/o
 - Тонкая настройка: целевая громкость, порог и степень сжатия компрессора, потолок лимитера, время возврата громкости.
 - Переключатель, который выключает расширение на конкретном сайте.
 
-Работает с плеерами на <video> и <audio> на любом сайте, в том числе на YouTube, в плеерах HLS и DASH и во встроенных плеерах.
-
-Не работает с видео под защитой DRM (Netflix и платные онлайн-кинотеатры): браузер не даёт расширениям обрабатывать их звук. Звонки и голосовые чаты расширение не трогает.
+Работает с плеерами на <video> и <audio> на любом сайте, в том числе на YouTube, в плеерах HLS и DASH, во встроенных плеерах с других доменов и в плеерах-веб-компонентах. Если к видео нельзя подключиться напрямую, например в онлайн-кинотеатре с защитой DRM, расширение обрабатывает звук всей вкладки (откройте окно расширения или нажмите Alt+Shift+V). Звонки и голосовые чаты расширение не трогает.
 
 Без сбора данных, рекламы и аккаунтов. Исходный код (MIT): https://github.com/olerast67/steady-volume
 ```
@@ -94,7 +92,10 @@ Single purpose: Boosts and levels the volume of video and audio played on web pa
 |---|---|
 | `storage` | Stores the user's settings: volume level, leveling mode, the Clearer speech switch and the list of sites where the extension is turned off. |
 | `activeTab` | When the user opens the popup, it reads the address of the current tab to show and change the "On this site" switch for that site. |
-| Host access `<all_urls>` (content script) | Video and audio players appear on any website and inside embedded players from other domains. The content script finds playing <video> and <audio> elements on the page and routes their sound through the volume processing. When a player loads a media file from another domain, the script requests that file's headers to check whether the server allows cross-origin audio processing (CORS); no user data is sent. It does not read page content and sends nothing else anywhere. |
+| Host access `<all_urls>` | Video and audio players appear on any website and inside embedded players from other domains. The content script finds playing <video> and <audio> elements and routes their sound through the volume processing. Host access is also required for the declarativeNetRequest rule described below. The extension does not read page content and sends nothing anywhere. |
+| `declarativeNetRequestWithHostAccess` | When a page plays a media file from another server, the browser lets Web Audio process its sound only if the response carries CORS headers. The extension adds a session rule that sets these headers for media requests between that one page host and that one media host, so the volume processing can work. No requests are blocked or redirected. |
+| `tabCapture` | When a video cannot be connected directly (DRM-protected streaming, sites that use their own audio processing), the user opens the popup or presses the shortcut and the extension captures that tab's audio to level and boost it. The audio is played back to the user immediately and is never recorded or transmitted. |
+| `offscreen` | The captured tab audio is processed in an offscreen document with the Web Audio API, because the service worker has no audio output. |
 | Remote code | No. All code is in the package. |
 | Data collection | None. |
 

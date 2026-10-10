@@ -1,5 +1,5 @@
 // End-to-end check in Firefox through WebDriver BiDi (installs the extension temporarily).
-// node test/e2e-firefox.mjs ["C:/Program Files/Mozilla Firefox/firefox.exe"]
+// node scripts/build.mjs --lint && node test/e2e-firefox.mjs ["C:/Program Files/Mozilla Firefox/firefox.exe"]
 import { spawn } from 'node:child_process';
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -48,7 +48,7 @@ function send(method, params = {}) {
 try {
   await connect();
   await send('session.new', { capabilities: {} });
-  const ext = await send('webExtension.install', { extensionData: { type: 'path', path: join(root, 'src') } });
+  const ext = await send('webExtension.install', { extensionData: { type: 'path', path: join(root, 'build', 'firefox') } });
   check('extension installed', !!ext.extension, ext.extension);
   const { contexts } = await send('browsingContext.getTree', {});
   const context = contexts[0].context;
@@ -71,21 +71,25 @@ try {
   s = await status();
   check('loud action cut', s?.gainDb < -3, `gainDb=${s?.gainDb?.toFixed(1)}`);
 
-  await evaluate('document.getElementById("same").pause(); document.getElementById("cross").play().then(() => "ok")');
-  await sleep(1500);
-  const t0 = await evaluate('document.getElementById("cross").currentTime');
-  await sleep(1000);
-  const t1 = await evaluate('document.getElementById("cross").currentTime');
-  s = await status();
-  check('cross-origin media not hooked', s?.blocked?.includes('cors') && s.active === 1, JSON.stringify(s?.blocked));
-  check('cross-origin media still plays', t1 > t0, `${t0} -> ${t1}`);
-
-  await evaluate('document.getElementById("cross").pause(); const a = document.getElementById("crossCors"); a.currentTime = 5; a.play().then(() => "ok")');
+  await evaluate('document.getElementById("same").pause(); var a = document.getElementById("cross"); a.currentTime = 5; a.play().then(() => "ok")');
   await sleep(3000);
-  const cc = JSON.parse(await evaluate('const c = document.getElementById("crossCors"); JSON.stringify({ co: c.crossOrigin, t: c.currentTime, paused: c.paused })'));
+  let el = JSON.parse(await evaluate('var c = document.getElementById("cross"); JSON.stringify({ co: c.crossOrigin, t: c.currentTime, paused: c.paused })'));
   s = await status();
-  check('CORS-enabled cross-origin media upgraded', cc.co === 'anonymous' && s?.active === 2, JSON.stringify({ ...cc, active: s?.active }));
-  check('upgraded media resumed at its position', !cc.paused && cc.t > 5, `t=${cc.t}`);
+  check('non-CORS cross-origin media connected via header rule', el.co === 'use-credentials' && s?.active === 2 && !s.blocked.length, JSON.stringify({ ...el, active: s?.active, blocked: s?.blocked }));
+  check('its sound reaches the processing (not silence)', s?.loudness > -50, `loudness=${s?.loudness}`);
+  check('it resumed at its position and plays', !el.paused && el.t > 5, `t=${el.t}`);
+
+  await evaluate('document.getElementById("cross").pause(); var a = document.getElementById("crossCors"); a.currentTime = 5; a.play().then(() => "ok")');
+  await sleep(3000);
+  el = JSON.parse(await evaluate('var c = document.getElementById("crossCors"); JSON.stringify({ co: c.crossOrigin, t: c.currentTime, paused: c.paused })'));
+  s = await status();
+  check('CORS cross-origin media connected', el.co === 'use-credentials' && s?.active === 3, JSON.stringify({ ...el, active: s?.active }));
+
+  await evaluate('document.getElementById("crossCors").pause(); window.shadowAudio.play().then(() => "ok")');
+  await sleep(3500);
+  s = await status();
+  check('media in closed shadow root connected', s?.active === 4 && s?.playing === 1, JSON.stringify({ active: s?.active, playing: s?.playing }));
+  check('shadow root media sound reaches the processing', s?.loudness > -50, `loudness=${s?.loudness}`);
 } catch (e) {
   check('run', false, e.message);
 } finally {

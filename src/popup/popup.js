@@ -13,6 +13,12 @@ const num = new Intl.NumberFormat(api.i18n.getUILanguage(), { maximumFractionDig
 let settings = { ...DEFAULTS };
 let tab = null;
 let host = null;
+let canCapture = false;  // Chromium: whole-tab capture is available
+let captureOn = false;
+let autoCaptureTried = false;
+let captureError = null;
+// Reasons an element can't be connected directly; whole-tab capture handles them instead.
+const CAPTURE_FOR = new Set(['drm', 'cors', 'busy', 'lost']);
 
 for (const el of document.querySelectorAll('[data-i18n]')) el.textContent = t(el.dataset.i18n);
 document.documentElement.lang = api.i18n.getUILanguage();
@@ -100,7 +106,21 @@ $('dialog').addEventListener('change', (e) => save({ dialog: e.target.checked })
 $('site').addEventListener('change', (e) => {
   const others = settings.disabledSites.filter((h) => h !== host);
   save({ disabledSites: e.target.checked ? others : [...others, host] });
+  if (!e.target.checked && captureOn) toggleCapture();
 });
+
+async function toggleCapture() {
+  captureError = null;
+  const r = await api.runtime.sendMessage({ type: captureOn ? 'stopCapture' : 'startCapture', tabId: tab.id }).catch((e) => ({ ok: false, error: e.message }));
+  if (r && r.ok === false) captureError = r.error;
+  poll();
+}
+$('capture').addEventListener('click', toggleCapture);
+
+function showCaptureButton(show) {
+  $('capture').hidden = !(canCapture && show);
+  $('capture').textContent = t(captureOn ? 'captureStop' : 'captureStart');
+}
 $('volume').addEventListener('input', (e) => saveSoon({ volume: Number(e.target.value) }));
 $('reset').addEventListener('click', () => save({ leveling: 2, custom: {}, volume: 100, dialog: false }));
 
@@ -134,8 +154,29 @@ function showMeter(gainDb) {
 }
 
 async function poll() {
+  showCaptureButton(false);
   if (!settings.enabled) { showMeter(null); setStatus(t('statusOff')); return; }
   if (host && settings.disabledSites.includes(host)) { showMeter(null); setStatus(t('statusSiteOff')); return; }
+
+  if (canCapture) {
+    const c = await api.runtime.sendMessage({ type: 'captureStatus', tabId: tab.id }).catch(() => null);
+    captureOn = !!c?.on;
+    if (captureOn) {
+      const loud = Number.isFinite(c.loudness) ? Math.round(c.loudness) : '…';
+      const gain = (c.gainDb >= 0 ? '+' : '') + (c.gainDb ?? 0).toFixed(0);
+      showMeter(c.gainDb ?? 0);
+      setStatus(t('statusCaptured', [String(loud), gain]));
+      showCaptureButton(true);
+      return;
+    }
+  }
+  if (captureError) {
+    showMeter(null);
+    setStatus(t('statusCaptureFailed', [captureError]), true);
+    showCaptureButton(true);
+    return;
+  }
+
   let s = null;
   try {
     s = await api.tabs.sendMessage(tab.id, { type: 'status' });
@@ -143,7 +184,12 @@ async function poll() {
     // no content script here: browser pages, extension stores, or a tab opened before install
     if (!host) { showMeter(null); setStatus(t('statusUnsupported')); return; }
   }
-  if (!s) { showMeter(null); setStatus(t('statusNone')); return; }
+  if (!s) {
+    showMeter(null);
+    setStatus(t(canCapture && host ? 'statusNoneCapture' : 'statusNone'));
+    showCaptureButton(!!host);
+    return;
+  }
   if (!host && s.host) { host = s.host; render(); } // tab URL can be hidden from the popup, the page script knows it
   const lastBlock = s.blocked[s.blocked.length - 1];
   if (s.playing) {
@@ -158,7 +204,16 @@ async function poll() {
     setStatus(t('statusWaiting'), true);
   } else if (lastBlock) {
     showMeter(null);
+    // Opening the popup is the user action tab capture needs, so start it right away for videos
+    // that can't be connected directly (DRM, servers without CORS, players with their own Web Audio).
+    if (canCapture && CAPTURE_FOR.has(lastBlock) && !autoCaptureTried) {
+      autoCaptureTried = true;
+      setStatus(t('statusCaptureHint'));
+      toggleCapture();
+      return;
+    }
     setStatus(t(BLOCK_MESSAGES[lastBlock]), true);
+    showCaptureButton(CAPTURE_FOR.has(lastBlock));
   } else {
     showMeter(null);
     setStatus(t('statusPaused'));
@@ -174,6 +229,7 @@ async function poll() {
     if (url.protocol === 'http:' || url.protocol === 'https:' || url.protocol === 'file:') host = url.hostname || 'file';
   } catch {}
   settings = { ...DEFAULTS, ...(await api.storage.sync.get(DEFAULTS)) };
+  canCapture = !!(await api.runtime.sendMessage({ type: 'capabilities' }).catch(() => null))?.capture;
   render();
   poll();
   setInterval(poll, 500);

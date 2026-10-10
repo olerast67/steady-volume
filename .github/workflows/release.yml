@@ -22,7 +22,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npx web-ext lint --source-dir src --warnings-as-errors
+      - run: npm run lint   # builds build/chromium and build/firefox, lints the Firefox one strictly
       - name: Check tag matches manifest version
         if: startsWith(github.ref, 'refs/tags/v')
         run: |
@@ -31,7 +31,7 @@ jobs:
       - run: npm run build
       - name: Sign for Firefox (unlisted)
         if: startsWith(github.ref, 'refs/tags/v') && env.AMO_JWT_ISSUER != ''
-        run: npx web-ext sign --source-dir src --artifacts-dir dist --channel unlisted --api-key "$AMO_JWT_ISSUER" --api-secret "$AMO_JWT_SECRET"
+        run: npx web-ext sign --source-dir build/firefox --artifacts-dir dist --channel unlisted --api-key "$AMO_JWT_ISSUER" --api-secret "$AMO_JWT_SECRET"
       - uses: actions/upload-artifact@v4
         with:
           name: steady-volume
