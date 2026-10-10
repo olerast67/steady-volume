@@ -132,7 +132,8 @@ async function quietGain(params) {
 async function runAll() {
   const report = { makeup: {}, cases: [] };
   for (let i = 1; i < LevelerEngine.PRESETS.length; i++) {
-    report.makeup['preset' + i] = +(await quietGain(LevelerEngine.PRESETS[i].comp)).toFixed(2);
+    const p = LevelerEngine.PRESETS[i];
+    report.makeup['preset' + i] = +(await quietGain({ threshold: p.threshold, knee: p.knee, ratio: p.ratio, attack: p.compAttack, release: p.compRelease })).toFixed(2);
   }
   report.makeup.limiter = +(await quietGain({ threshold: -2, knee: 0, ratio: 20, attack: 0.001, release: 0.08 })).toFixed(2);
 
@@ -149,6 +150,7 @@ async function runAll() {
     { label: 'medium', enabled: true, volume: 100, leveling: 2, dialog: false },
     { label: 'strong', enabled: true, volume: 100, leveling: 3, dialog: false },
     { label: 'strong, 200%', enabled: true, volume: 200, leveling: 3, dialog: false },
+    { label: 'custom: target -16, ceiling -6', enabled: true, volume: 100, leveling: 4, dialog: false, custom: { target: -16, ceiling: -6 } },
   ];
   for (const c of configs) {
     const { out, trace } = await render(c, movie);

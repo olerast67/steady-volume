@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security problem / Уязвимость
+    url: https://github.com/olerast67/steady-volume/security/advisories/new
+    about: Please report vulnerabilities privately, not as an issue. / Сообщайте об уязвимостях приватно, не через issue.

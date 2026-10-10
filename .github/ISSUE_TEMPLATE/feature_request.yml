@@ -1,0 +1,11 @@
+name: Idea / Предложение
+description: A feature or a change you would like
+labels: [enhancement]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What and why / Что и зачем
+      description: Describe what you watch or listen to and what is missing. / Опишите, что вы смотрите или слушаете и чего не хватает.
+    validations:
+      required: true

@@ -2,7 +2,7 @@
 // node test/e2e.mjs [msedge|chrome|chromium]   (run `node test/make-movie.mjs` first)
 import { chromium } from 'playwright-core';
 import { spawn } from 'node:child_process';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -17,6 +17,7 @@ const check = (name, ok, info = '') => { results.push({ name, ok }); console.log
 
 const server = spawn(process.execPath, [join(root, 'test/serve.mjs'), String(PORT)], { stdio: 'ignore' });
 const profile = mkdtempSync(join(tmpdir(), 'sv-e2e-'));
+mkdirSync(join(root, 'test', 'out'), { recursive: true });
 await sleep(500);
 
 const context = await chromium.launchPersistentContext(profile, {
@@ -77,6 +78,15 @@ try {
   check('cross-origin media not hooked', s?.blocked.includes('cors') && s.active === 1, JSON.stringify(s?.blocked));
   check('cross-origin media still plays', t1 > t0, `${t0.toFixed(2)} -> ${t1.toFixed(2)}`);
 
+  // cross-origin with CORS headers on the server: reloaded with crossorigin at the same position and processed
+  await page.evaluate(() => { const c = document.getElementById('cross'); c.pause(); const a = document.getElementById('crossCors'); a.currentTime = 5; a.play(); });
+  await sleep(3000);
+  const cc = await page.evaluate(() => { const a = document.getElementById('crossCors'); return { co: a.crossOrigin, t: a.currentTime, paused: a.paused }; });
+  s = await status();
+  check('CORS-enabled cross-origin media upgraded', cc.co === 'anonymous' && s?.active === 2, JSON.stringify({ ...cc, active: s?.active }));
+  check('upgraded media resumed at its position', !cc.paused && cc.t > 5, `t=${cc.t.toFixed(2)}`);
+  await page.evaluate(() => document.getElementById('crossCors').pause());
+
   // settings: turn the site off through storage, the engine must go to bypass without a reload
   const extId = await inExt('chrome.runtime.id');
   const popup = await context.newPage();
@@ -89,7 +99,16 @@ try {
   await sleep(300);
   const stored = await popup.evaluate(() => chrome.storage.sync.get(null));
   check('popup saves leveling', stored.leveling === 3, JSON.stringify(stored));
-  await popup.screenshot({ path: join(root, 'docs', 'popup-test.png') });
+  await popup.click('#advanced summary');
+  await popup.evaluate(() => { const f = document.getElementById('f_target'); f.value = -16; f.dispatchEvent(new Event('input')); });
+  await sleep(600);
+  const stored2 = await popup.evaluate(() => chrome.storage.sync.get(null));
+  check('fine-tuning switches to custom mode', stored2.leveling === 4 && stored2.custom?.target === -16 && stored2.custom?.ratio === 6, JSON.stringify(stored2));
+  await popup.screenshot({ path: join(root, 'test', 'out', 'popup-advanced.png'), fullPage: true });
+  await popup.click('#reset');
+  await popup.click('#advanced summary');
+  await sleep(300);
+  await popup.screenshot({ path: join(root, 'test', 'out', 'popup.png') });
 
   await popup.evaluate(() => chrome.storage.sync.set({ disabledSites: ['127.0.0.1'] }));
   await page.bringToFront();

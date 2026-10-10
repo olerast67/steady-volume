@@ -1,0 +1,51 @@
+name: Site not working / Не работает на сайте
+description: The extension did not connect, the sound disappeared or something broke on a site
+labels: [site]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Можно писать по-русски.
+        DRM-protected services (Netflix, paid streaming) cannot be supported: the browser hides their sound from extensions. / Сервисы с защитой DRM (Netflix, платные онлайн-кинотеатры) поддержать нельзя: браузер закрывает расширениям их звук.
+  - type: input
+    id: url
+    attributes:
+      label: Page address / Адрес страницы
+      placeholder: https://...
+    validations:
+      required: true
+  - type: dropdown
+    id: what
+    attributes:
+      label: What happened / Что случилось
+      options:
+        - Sound is not processed / Звук не обрабатывается
+        - Sound disappeared / Звук пропал
+        - Video broke or restarted / Видео сломалось или началось заново
+        - Sound is distorted / Звук хрипит или искажается
+        - Something else / Другое
+    validations:
+      required: true
+  - type: input
+    id: status
+    attributes:
+      label: Popup status text / Текст внизу окна расширения
+      description: Open the extension popup while the video plays and copy the line at the bottom. / Откройте окно расширения во время воспроизведения и скопируйте строку внизу.
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version / Браузер и версия
+      placeholder: Chrome 141, Yandex Browser 25.10, Firefox 157
+    validations:
+      required: true
+  - type: input
+    id: settings
+    attributes:
+      label: Mode and volume / Режим и громкость
+      placeholder: Auto, 200%
+  - type: textarea
+    id: details
+    attributes:
+      label: Details / Подробности

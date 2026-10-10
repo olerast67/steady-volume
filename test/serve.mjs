@@ -18,7 +18,20 @@ createServer(async (req, res) => {
   if (!file.startsWith(root)) { res.writeHead(403).end(); return; }
   try {
     const body = await readFile(file);
-    res.writeHead(200, { 'content-type': types[extname(file)] || 'application/octet-stream' }).end(body);
+    const headers = { 'content-type': types[extname(file)] || 'application/octet-stream' };
+    // ?cors=1 imitates a CDN that allows cross-origin reads
+    if (new URL(req.url, 'http://x').searchParams.has('cors')) headers['access-control-allow-origin'] = '*';
+    headers['accept-ranges'] = 'bytes';
+    // Range support, as on real media servers: without it Firefox can't seek to a part not yet downloaded
+    const m = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range || '');
+    if (m) {
+      const start = m[1] ? Number(m[1]) : body.length - Number(m[2]);
+      const end = m[1] && m[2] ? Math.min(Number(m[2]), body.length - 1) : body.length - 1;
+      headers['content-range'] = `bytes ${start}-${end}/${body.length}`;
+      res.writeHead(206, headers).end(body.subarray(start, end + 1));
+      return;
+    }
+    res.writeHead(200, headers).end(body);
   } catch {
     res.writeHead(404).end('not found');
   }

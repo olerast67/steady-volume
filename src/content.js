@@ -4,7 +4,10 @@
 
 (() => {
   const api = globalThis.browser ?? globalThis.chrome;
-  const DEFAULTS = { enabled: true, volume: 100, leveling: 2, dialog: false, disabledSites: [] };
+  const DEFAULTS = { enabled: true, volume: 100, leveling: 2, dialog: false, custom: {}, disabledSites: [] };
+  // Firefox content scripts fetch with extension privileges; content.fetch() makes the request as the page does,
+  // so the CORS probe below gives the same answer the media element will get.
+  const pageFetch = globalThis.content?.fetch ? globalThis.content.fetch.bind(globalThis.content) : fetch;
 
   // Open a page with #steady-volume-debug to see the live status in <html data-steady-volume> (used by test/e2e-firefox.mjs).
   const DEBUG = location.hash === '#steady-volume-debug';
@@ -17,6 +20,8 @@
   const hooked = new Set();        // elements routed through the engine (for status)
   const waiting = new Set();       // elements waiting for a user gesture to start the AudioContext
   const blocked = new Map();       // element → reason it was left alone
+  const probed = new WeakSet();    // elements already checked for CORS on their media server
+  const upgraded = new WeakSet();  // elements we switched to crossorigin="anonymous"
 
   // Per-site switch is keyed by the tab's top-level host, also inside cross-origin player iframes.
   const topHost = (() => {
@@ -58,10 +63,60 @@
     return ctx.state === 'running';
   }
 
+  // Cross-origin file without crossorigin attribute: if its server sends CORS headers, reload the element
+  // with crossorigin="anonymous" at the same position, after which Web Audio can process it.
+  async function corsUpgrade(el) {
+    if (probed.has(el) || !el.hasAttribute('src')) return false;
+    probed.add(el);
+    const src = el.currentSrc;
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 4000);
+    let ok = false;
+    try {
+      const r = await pageFetch(src, { mode: 'cors', credentials: 'omit', cache: 'no-store', signal: ctrl.signal });
+      ok = r.ok;
+    } catch {}
+    clearTimeout(timer);
+    ctrl.abort(); // headers are enough, don't download the file
+    if (!ok || el.currentSrc !== src) return false;
+
+    const time = el.currentTime;
+    const rate = el.playbackRate;
+    const wasPlaying = !el.paused;
+    const restore = () => {
+      try { el.currentTime = time; } catch {}
+      el.playbackRate = rate;
+      if (wasPlaying) el.play().catch(() => {});
+    };
+    return new Promise((resolve) => {
+      const done = (success) => {
+        clearTimeout(guard);
+        el.removeEventListener('loadedmetadata', onMeta);
+        el.removeEventListener('error', onError);
+        if (!success) {
+          el.removeAttribute('crossorigin');
+          el.src = src;
+        }
+        restore();
+        resolve(success);
+      };
+      const onMeta = () => done(true);
+      const onError = () => done(false);
+      const guard = setTimeout(onError, 8000);
+      el.addEventListener('loadedmetadata', onMeta);
+      el.addEventListener('error', onError);
+      upgraded.add(el);
+      el.crossOrigin = 'anonymous';
+      el.src = src;
+    });
+  }
+
   async function attach(el) {
     if (sources.has(el) || !el.isConnected && el.paused) return;
     if (!siteOn()) return;
-    const reason = unsafeReason(el);
+    let reason = unsafeReason(el);
+    if (reason === 'cors' && await corsUpgrade(el)) reason = unsafeReason(el);
+    if (sources.has(el)) return;
     if (reason) { blocked.set(el, reason); return; }
     blocked.delete(el);
 
@@ -79,6 +134,7 @@
       node.connect(engine.input);
       sources.set(el, node);
       hooked.add(el);
+      if (upgraded.has(el)) el.addEventListener('error', () => blocked.set(el, 'lost'));
       startTimer();
     } catch {
       blocked.set(el, 'busy'); // the page already feeds this element into its own Web Audio graph
@@ -145,7 +201,7 @@
       waiting: waiting.size,
       blocked: reasons,
       gainDb: engine && siteOn() && engine.preset ? engine.gainDb : 0,
-      loudness: engine ? engine.momentary : -Infinity,
+      loudness: engine ? engine.shortTerm : -Infinity, // 3 s window: steadier to read than momentary
       limiter: engine ? engine.limiterReduction() : 0,
     };
   }

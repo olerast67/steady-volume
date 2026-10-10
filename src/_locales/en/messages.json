@@ -1,36 +1,149 @@
 {
-  "extName": { "message": "Steady Volume: booster and leveler" },
-  "extShortName": { "message": "Steady Volume" },
-  "extDescription": { "message": "Boosts quiet videos up to 600% and evens out loudness: louder dialog, quieter explosions. Works on any site." },
-
-  "enabled": { "message": "On" },
-  "volume": { "message": "Volume" },
-  "leveling": { "message": "Leveling" },
-  "levelOff": { "message": "Off" },
-  "levelLight": { "message": "Light" },
-  "levelMedium": { "message": "Medium" },
-  "levelStrong": { "message": "Strong" },
-  "hintOff": { "message": "Volume boost only, the original dynamics stay as they are." },
-  "hintLight": { "message": "Smooths out the biggest jumps, music keeps its dynamics." },
-  "hintMedium": { "message": "Dialog and action at a similar level. Good for films and shows." },
-  "hintStrong": { "message": "Everything at one level. For night time and noisy rooms." },
-  "dialog": { "message": "Clearer speech" },
-  "dialogHint": { "message": "Less rumble, more voice presence" },
-  "site": { "message": "On this site" },
-  "siteUnknown": { "message": "this page" },
-
-  "statusOff": { "message": "Turned off. Videos already playing will play as they are until you turn it back on." },
-  "statusSiteOff": { "message": "Turned off for this site." },
-  "statusNone": { "message": "No sound on this tab yet. Start a video and the extension picks it up." },
-  "statusUnsupported": { "message": "Browser pages and extension stores can't be processed." },
-  "statusPlaying": { "message": "Processing. Loudness $1 LUFS, adjustment $2 dB" },
-  "statusPaused": { "message": "Connected, video paused." },
-  "statusWaiting": { "message": "Click anywhere on the page: the browser only starts audio processing after a click." },
-  "statusDrm": { "message": "This video is copy-protected (DRM). The browser doesn't let extensions process its sound, so it plays unchanged." },
-  "statusCors": { "message": "This video comes from another server that doesn't allow processing. It plays unchanged so the sound doesn't drop out." },
-  "statusStream": { "message": "Voice and video calls are left untouched." },
-  "statusBusy": { "message": "The site processes this video's sound itself, the extension can't connect to it." },
-  "statusReload": { "message": "If the sound disappeared, turn the extension off for this site and reload the page." },
-  "limiterActive": { "message": "limiter $1 dB" },
-  "sourceCode": { "message": "Source code" }
+  "extName": {
+    "message": "Steady Volume: booster and leveler"
+  },
+  "extShortName": {
+    "message": "Steady Volume"
+  },
+  "extDescription": {
+    "message": "Boosts quiet videos up to 600% and evens out loudness: louder dialog, quieter explosions. Works on any site."
+  },
+  "enabled": {
+    "message": "On"
+  },
+  "volume": {
+    "message": "Volume"
+  },
+  "leveling": {
+    "message": "Leveling"
+  },
+  "levelOff": {
+    "message": "Off"
+  },
+  "levelLight": {
+    "message": "Light"
+  },
+  "hintOff": {
+    "message": "Volume boost only, the original dynamics stay as they are."
+  },
+  "hintLight": {
+    "message": "Smooths out the biggest jumps, music keeps its dynamics."
+  },
+  "dialog": {
+    "message": "Clearer speech"
+  },
+  "dialogHint": {
+    "message": "Less rumble, more voice presence"
+  },
+  "site": {
+    "message": "On this site"
+  },
+  "siteUnknown": {
+    "message": "this page"
+  },
+  "statusOff": {
+    "message": "Turned off. Videos already playing will play as they are until you turn it back on."
+  },
+  "statusSiteOff": {
+    "message": "Turned off for this site."
+  },
+  "statusNone": {
+    "message": "No sound on this tab yet. Start a video and the extension picks it up."
+  },
+  "statusUnsupported": {
+    "message": "Browser pages and extension stores can't be processed."
+  },
+  "statusPlaying": {
+    "message": "Processing. Loudness $1 LUFS, adjustment $2 dB"
+  },
+  "statusPaused": {
+    "message": "Connected, video paused."
+  },
+  "statusWaiting": {
+    "message": "Click anywhere on the page: the browser only starts audio processing after a click."
+  },
+  "statusDrm": {
+    "message": "This video is copy-protected (DRM). The browser doesn't let extensions process its sound, so it plays unchanged."
+  },
+  "statusCors": {
+    "message": "This video comes from another server that doesn't allow processing. It plays unchanged so the sound doesn't drop out."
+  },
+  "statusStream": {
+    "message": "Voice and video calls are left untouched."
+  },
+  "statusBusy": {
+    "message": "The site processes this video's sound itself, the extension can't connect to it."
+  },
+  "statusReload": {
+    "message": "If the sound disappeared, turn the extension off for this site and reload the page."
+  },
+  "limiterActive": {
+    "message": "limiter $1 dB"
+  },
+  "levelAuto": {
+    "message": "Auto"
+  },
+  "levelNight": {
+    "message": "Night"
+  },
+  "levelCustom": {
+    "message": "custom"
+  },
+  "hintAuto": {
+    "message": "Dialog and action at a similar level. Good for films, series and YouTube."
+  },
+  "hintNight": {
+    "message": "Everything at one level, loud scenes strongly reduced. For night time and noisy rooms."
+  },
+  "hintCustom": {
+    "message": "Mode set by hand in fine-tuning. Pick a mode above or press Reset to go back."
+  },
+  "advanced": {
+    "message": "Fine-tuning"
+  },
+  "reset": {
+    "message": "Reset all"
+  },
+  "field_target": {
+    "message": "Target loudness"
+  },
+  "field_maxBoost": {
+    "message": "Raise quiet parts by up to"
+  },
+  "field_maxCut": {
+    "message": "Lower loud parts by up to"
+  },
+  "field_release": {
+    "message": "Gain recovery time"
+  },
+  "field_threshold": {
+    "message": "Compressor threshold"
+  },
+  "field_ratio": {
+    "message": "Compressor ratio"
+  },
+  "field_ceiling": {
+    "message": "Limiter ceiling"
+  },
+  "unit_LUFS": {
+    "message": "LUFS"
+  },
+  "unit_dB": {
+    "message": "dB"
+  },
+  "unit_s": {
+    "message": "s"
+  },
+  "statusLost": {
+    "message": "The site switched the video source and the sound may be gone. Reload the page."
+  },
+  "help": {
+    "message": "Help"
+  },
+  "donate": {
+    "message": "Donate"
+  },
+  "report": {
+    "message": "Report a problem"
+  }
 }

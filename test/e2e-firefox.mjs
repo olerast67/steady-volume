@@ -79,6 +79,13 @@ try {
   s = await status();
   check('cross-origin media not hooked', s?.blocked?.includes('cors') && s.active === 1, JSON.stringify(s?.blocked));
   check('cross-origin media still plays', t1 > t0, `${t0} -> ${t1}`);
+
+  await evaluate('document.getElementById("cross").pause(); const a = document.getElementById("crossCors"); a.currentTime = 5; a.play().then(() => "ok")');
+  await sleep(3000);
+  const cc = JSON.parse(await evaluate('const c = document.getElementById("crossCors"); JSON.stringify({ co: c.crossOrigin, t: c.currentTime, paused: c.paused })'));
+  s = await status();
+  check('CORS-enabled cross-origin media upgraded', cc.co === 'anonymous' && s?.active === 2, JSON.stringify({ ...cc, active: s?.active }));
+  check('upgraded media resumed at its position', !cc.paused && cc.t > 5, `t=${cc.t}`);
 } catch (e) {
   check('run', false, e.message);
 } finally {

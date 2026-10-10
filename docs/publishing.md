@@ -44,38 +44,46 @@
 
 ### Полное описание, English
 
+Магазины ищут по названию и описанию, поэтому в описании стоят слова, по которым ищут такие расширения: volume booster, loudness, normalizer, compressor, limiter.
+
 ```
-Steady Volume raises quiet video and audio on websites and evens out the difference between quiet and loud scenes. Dialog in films becomes louder, explosions and music become quieter, and you stop reaching for the volume.
+Steady Volume is a volume booster and loudness leveler for video and audio on websites. It raises quiet dialog in films and series, lowers explosions and loud music, and keeps the boosted sound from distorting with a limiter.
+
+How to use: install, play a video. Auto mode is on by default, nothing needs setting up.
 
 Settings:
-- Volume from 100% to 600%. A limiter keeps the boosted sound from distorting.
-- Leveling: Off, Light, Medium or Strong. Medium suits films and series, Strong is for night time.
+- Volume boost from 100% to 600%.
+- Leveling modes: Off, Light (music), Auto (films, series, YouTube), Night (quiet watching at night).
 - Clearer speech: less low rumble, more voice presence.
+- Fine-tuning for those who want it: target loudness, compressor threshold and ratio, limiter ceiling, gain recovery time.
 - A switch to turn the extension off on a particular site.
 
-Works with <video> and <audio> on any site, including embedded players.
+Works with <video> and <audio> players on any site, including YouTube, HLS and DASH players and embedded players.
 
-Does not work with DRM-protected video (Netflix and other paid streaming services): the browser does not let extensions process their sound. Calls and voice chats are left untouched.
+Does not work with DRM-protected video (Netflix and paid streaming services): the browser does not let extensions process their sound. Calls and voice chats are left untouched.
 
-The extension collects no data and makes no network requests. Source code (MIT): https://github.com/Erop404iv/steady-volume
+No data collection, no ads, no accounts. Source code (MIT): https://github.com/olerast67/steady-volume
 ```
 
 ### Полное описание, русский
 
 ```
-Ровный звук поднимает громкость тихих видео и аудио на сайтах и выравнивает разницу между тихими и громкими сценами. Диалоги в фильмах становятся громче, взрывы и музыка тише.
+Ровный звук усиливает громкость видео и аудио на сайтах и выравнивает её. Тихие диалоги в фильмах и сериалах становятся громче, взрывы и громкая музыка тише, а лимитер не даёт усиленному звуку хрипеть. Усилитель звука, нормализатор громкости, компрессор и лимитер в одном расширении.
+
+Как пользоваться: установите и включите видео. Режим «Авто» работает по умолчанию, настраивать ничего не нужно.
 
 Настройки:
-- Громкость от 100% до 600%. Лимитер не даёт усиленному звуку хрипеть.
-- Выравнивание: выкл, мягко, средне или сильно. Средний режим подходит для фильмов и сериалов, сильный для ночного просмотра.
+- Усиление громкости от 100% до 600%.
+- Режимы выравнивания: выкл, мягко (музыка), авто (фильмы, сериалы, YouTube), ночь (тихий просмотр ночью).
 - «Чётче речь»: меньше низкого гула, голос выходит вперёд.
+- Тонкая настройка: целевая громкость, порог и степень сжатия компрессора, потолок лимитера, время возврата громкости.
 - Переключатель, который выключает расширение на конкретном сайте.
 
-Работает с <video> и <audio> на любом сайте, в том числе во встроенных плеерах.
+Работает с плеерами на <video> и <audio> на любом сайте, в том числе на YouTube, в плеерах HLS и DASH и во встроенных плеерах.
 
-Не работает с видео под защитой DRM (Netflix и другие платные онлайн-кинотеатры): браузер не даёт расширениям обрабатывать их звук. Звонки и голосовые чаты расширение не трогает.
+Не работает с видео под защитой DRM (Netflix и платные онлайн-кинотеатры): браузер не даёт расширениям обрабатывать их звук. Звонки и голосовые чаты расширение не трогает.
 
-Расширение не собирает данные и не делает сетевых запросов. Исходный код (MIT): https://github.com/Erop404iv/steady-volume
+Без сбора данных, рекламы и аккаунтов. Исходный код (MIT): https://github.com/olerast67/steady-volume
 ```
 
 ## Обоснования разрешений
@@ -86,6 +94,10 @@ Single purpose: Boosts and levels the volume of video and audio played on web pa
 |---|---|
 | `storage` | Stores the user's settings: volume level, leveling mode, the Clearer speech switch and the list of sites where the extension is turned off. |
 | `activeTab` | When the user opens the popup, it reads the address of the current tab to show and change the "On this site" switch for that site. |
-| Host access `<all_urls>` (content script) | Video and audio players appear on any website and inside embedded players from other domains. The content script finds playing <video> and <audio> elements on the page and routes their sound through the volume processing. It does not read page content, does not modify the page and sends nothing anywhere. |
+| Host access `<all_urls>` (content script) | Video and audio players appear on any website and inside embedded players from other domains. The content script finds playing <video> and <audio> elements on the page and routes their sound through the volume processing. When a player loads a media file from another domain, the script requests that file's headers to check whether the server allows cross-origin audio processing (CORS); no user data is sent. It does not read page content and sends nothing else anywhere. |
 | Remote code | No. All code is in the package. |
 | Data collection | None. |
+
+## Скриншоты для магазинов
+
+`python scripts/store-assets.py` после `node scripts/screenshots.mjs msedge` собирает из скриншотов окна расширения картинки 1280×800 для магазинов и превью репозитория 1280×640 в `docs/store/`.

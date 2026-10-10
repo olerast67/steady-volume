@@ -7,7 +7,10 @@
 <audio id="same" controls src="movie.wav"></audio>
 <p>Cross-origin without CORS (open this page on 127.0.0.1, the file loads from localhost). The extension must leave it alone, the sound must not disappear.</p>
 <audio id="cross" controls></audio>
+<p>Cross-origin from a server that sends CORS headers, without a crossorigin attribute. The extension must reload it with crossorigin and process it.</p>
+<audio id="crossCors" controls></audio>
 <script>
   const other = location.hostname === 'localhost' ? '127.0.0.1' : 'localhost';
   document.getElementById('cross').src = `http://${other}:${location.port}/test/movie.wav`;
+  document.getElementById('crossCors').src = `http://${other}:${location.port}/test/movie.wav?cors=1`;
 </script>

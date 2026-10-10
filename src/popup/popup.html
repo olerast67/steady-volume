@@ -9,7 +9,7 @@
   <header>
     <img src="../icons/icon-32.png" width="24" height="24" alt="">
     <h1 data-i18n="extShortName"></h1>
-    <label class="switch" title="">
+    <label class="switch">
       <input type="checkbox" id="enabled">
       <span></span>
     </label>
@@ -29,14 +29,20 @@
     </section>
 
     <section>
-      <div class="row"><span data-i18n="leveling"></span></div>
+      <div class="row"><span data-i18n="leveling"></span><span class="badge" id="customBadge" data-i18n="levelCustom" hidden></span></div>
       <div class="segmented" role="radiogroup" id="leveling">
         <button type="button" role="radio" data-value="0" data-i18n="levelOff"></button>
         <button type="button" role="radio" data-value="1" data-i18n="levelLight"></button>
-        <button type="button" role="radio" data-value="2" data-i18n="levelMedium"></button>
-        <button type="button" role="radio" data-value="3" data-i18n="levelStrong"></button>
+        <button type="button" role="radio" data-value="2" data-i18n="levelAuto"></button>
+        <button type="button" role="radio" data-value="3" data-i18n="levelNight"></button>
       </div>
       <p class="hint" id="levelHint"></p>
+
+      <details id="advanced">
+        <summary data-i18n="advanced"></summary>
+        <div id="fields"></div>
+        <button type="button" id="reset" class="link" data-i18n="reset"></button>
+      </details>
     </section>
 
     <section class="toggles">
@@ -55,8 +61,13 @@
     <div id="meter" hidden><div id="meterBar"></div></div>
     <p id="status"></p>
     <p class="hint" data-i18n="statusReload"></p>
-    <a href="https://github.com/Erop404iv/steady-volume" target="_blank" rel="noopener" data-i18n="sourceCode"></a>
+    <nav>
+      <a href="https://github.com/olerast67/steady-volume#readme" target="_blank" rel="noopener" data-i18n="help"></a>
+      <a href="https://github.com/olerast67/steady-volume/blob/main/DONATE.md" target="_blank" rel="noopener" data-i18n="donate"></a>
+      <a href="https://github.com/olerast67/steady-volume/issues/new/choose" target="_blank" rel="noopener" data-i18n="report"></a>
+    </nav>
   </footer>
+  <script src="../engine.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>
