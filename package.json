@@ -4,6 +4,15 @@
   "private": true,
   "description": "Browser extension that boosts and levels the volume of video and audio on any site",
   "license": "MIT",
+  "author": "olerast",
+  "homepage": "https://github.com/olerast67/steady-volume#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olerast67/steady-volume.git"
+  },
+  "bugs": {
+    "url": "https://github.com/olerast67/steady-volume/issues"
+  },
   "scripts": {
     "lint": "node scripts/build.mjs --lint",
     "build": "node scripts/build.mjs",

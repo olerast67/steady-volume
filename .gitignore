@@ -5,3 +5,4 @@ test/movie.wav
 .amo-upload-uuid
 test/out/
 build/
+.claude/
