@@ -166,5 +166,8 @@
   },
   "statusCaptureHint": {
     "message": "扩展无法直接连接到此视频，因此处理整个标签页的声音。"
+  },
+  "author": {
+    "message": "作者："
   }
 }

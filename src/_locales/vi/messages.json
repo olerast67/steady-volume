@@ -166,5 +166,8 @@
   },
   "statusCaptureHint": {
     "message": "Tiện ích không thể kết nối trực tiếp với video này nên xử lý âm thanh của cả tab."
+  },
+  "author": {
+    "message": "Tác giả:"
   }
 }

@@ -166,5 +166,8 @@
   },
   "statusCaptureHint": {
     "message": "L'estensione non può collegarsi direttamente a questo video, quindi elabora l'audio di tutta la scheda."
+  },
+  "author": {
+    "message": "Autore:"
   }
 }

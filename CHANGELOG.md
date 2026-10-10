@@ -1,5 +1,10 @@
 # Changelog / История изменений
 
+## 1.2.1 (2026-10-10)
+
+- The popup shows the author (olerast.com) and a GitHub button; the extension details page links to the repository.
+- В окне расширения появились автор (olerast.com) и кнопка GitHub, на странице расширения в браузере есть ссылка на репозиторий.
+
 ## 1.2.0 (2026-10-10)
 
 - The popup is translated into 18 languages; the store name and description follow the browser language.

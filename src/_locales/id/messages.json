@@ -166,5 +166,8 @@
   },
   "statusCaptureHint": {
     "message": "Ekstensi tidak dapat terhubung langsung ke video ini, jadi memproses suara seluruh tab."
+  },
+  "author": {
+    "message": "Pembuat:"
   }
 }

@@ -166,5 +166,8 @@
   },
   "statusCaptureHint": {
     "message": "A extensão não consegue se conectar a este vídeo diretamente, então processa o som da aba inteira."
+  },
+  "author": {
+    "message": "Autor:"
   }
 }

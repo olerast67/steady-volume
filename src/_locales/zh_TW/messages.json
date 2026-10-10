@@ -166,5 +166,8 @@
   },
   "statusCaptureHint": {
     "message": "擴充功能無法直接連線到此影片，因此處理整個分頁的聲音。"
+  },
+  "author": {
+    "message": "作者："
   }
 }

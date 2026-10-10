@@ -166,5 +166,8 @@
   },
   "statusCaptureHint": {
     "message": "The extension can't connect to this video directly, so it processes the whole tab's sound."
+  },
+  "author": {
+    "message": "Author:"
   }
 }

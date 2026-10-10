@@ -166,5 +166,8 @@
   },
   "statusCaptureHint": {
     "message": "Die Erweiterung kann sich nicht direkt mit diesem Video verbinden und bearbeitet deshalb den Ton des ganzen Tabs."
+  },
+  "author": {
+    "message": "Autor:"
   }
 }

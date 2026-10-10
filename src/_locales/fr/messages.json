@@ -166,5 +166,8 @@
   },
   "statusCaptureHint": {
     "message": "L'extension ne peut pas se connecter directement à cette vidéo, elle traite donc le son de tout l'onglet."
+  },
+  "author": {
+    "message": "Auteur :"
   }
 }

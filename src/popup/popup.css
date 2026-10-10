@@ -144,3 +144,28 @@ button.link:hover { text-decoration: underline; }
 footer nav { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 4px; }
 output, #status { unicode-bidi: plaintext; }
 output { direction: ltr; unicode-bidi: isolate; }
+
+.credits {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 6px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+.credits a { color: var(--text); font-size: 12px; }
+a.github {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  text-decoration: none;
+  font-weight: 600;
+}
+a.github:hover { border-color: var(--muted); }

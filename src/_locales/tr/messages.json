@@ -166,5 +166,8 @@
   },
   "statusCaptureHint": {
     "message": "Eklenti bu videoya doğrudan bağlanamıyor, bu yüzden tüm sekmenin sesini işliyor."
+  },
+  "author": {
+    "message": "Geliştirici:"
   }
 }

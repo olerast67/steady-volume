@@ -14,6 +14,7 @@ LOCALES = ROOT / "src" / "_locales"
 T = {}
 
 T["de"] = {
+    "author": "Autor:",
     "extName": "Steady Volume: Lautstärke-Booster und Ausgleich",
     "extShortName": "Steady Volume",
     "extDescription": "Macht leise Videos bis zu 600 % lauter und gleicht die Lautstärke aus: Dialoge lauter, Explosionen leiser. Auf jeder Website.",
@@ -54,6 +55,7 @@ T["de"] = {
 }
 
 T["es"] = {
+    "author": "Autor:",
     "extName": "Steady Volume: amplificador y nivelador de volumen",
     "extShortName": "Steady Volume",
     "extDescription": "Sube el volumen de vídeos bajos hasta un 600 % y lo nivela: diálogos más altos, explosiones más bajas. Funciona en cualquier web.",
@@ -94,6 +96,7 @@ T["es"] = {
 }
 
 T["fr"] = {
+    "author": "Auteur :",
     "extName": "Steady Volume : amplificateur et égaliseur de volume",
     "extShortName": "Steady Volume",
     "extDescription": "Augmente le son des vidéos trop faibles jusqu'à 600 % et égalise le volume : dialogues plus forts, explosions plus douces.",
@@ -134,6 +137,7 @@ T["fr"] = {
 }
 
 T["it"] = {
+    "author": "Autore:",
     "extName": "Steady Volume: amplificatore e livellatore del volume",
     "extShortName": "Steady Volume",
     "extDescription": "Alza i video troppo bassi fino al 600% e livella il volume: dialoghi più forti, esplosioni più basse. Funziona su ogni sito.",
@@ -174,6 +178,7 @@ T["it"] = {
 }
 
 T["pt_BR"] = {
+    "author": "Autor:",
     "extName": "Steady Volume: amplificador e nivelador de volume",
     "extShortName": "Steady Volume",
     "extDescription": "Aumenta o volume de vídeos baixos em até 600% e nivela o som: diálogos mais altos, explosões mais baixas. Em qualquer site.",
@@ -214,6 +219,7 @@ T["pt_BR"] = {
 }
 
 T["pl"] = {
+    "author": "Autor:",
     "extName": "Steady Volume: wzmacniacz i wyrównywacz głośności",
     "extShortName": "Steady Volume",
     "extDescription": "Podgłaśnia ciche filmy do 600% i wyrównuje głośność: dialogi głośniej, wybuchy ciszej. Działa na każdej stronie.",
@@ -254,6 +260,7 @@ T["pl"] = {
 }
 
 T["tr"] = {
+    "author": "Geliştirici:",
     "extName": "Steady Volume: ses yükseltici ve ses dengeleyici",
     "extShortName": "Steady Volume",
     "extDescription": "Sessiz videoları %600'e kadar yükseltir ve sesi dengeler: diyaloglar daha yüksek, patlamalar daha alçak. Her sitede çalışır.",
@@ -294,6 +301,7 @@ T["tr"] = {
 }
 
 T["uk"] = {
+    "author": "Автор:",
     "extName": "Steady Volume: підсилювач і вирівнювач гучності",
     "extShortName": "Steady Volume",
     "extDescription": "Підсилює тихі відео до 600% і вирівнює гучність: діалоги гучніші, вибухи тихіші. Працює на будь-якому сайті.",
@@ -334,6 +342,7 @@ T["uk"] = {
 }
 
 T["ja"] = {
+    "author": "作者：",
     "extName": "Steady Volume: 音量ブースター＆音量平準化",
     "extShortName": "Steady Volume",
     "extDescription": "小さい動画の音量を最大600%まで上げ、音量を自動で揃えます。セリフは大きく、爆発音は小さく。どのサイトでも使えます。",
@@ -374,6 +383,7 @@ T["ja"] = {
 }
 
 T["ko"] = {
+    "author": "제작자:",
     "extName": "Steady Volume: 볼륨 부스터 및 음량 평준화",
     "extShortName": "Steady Volume",
     "extDescription": "작은 영상 소리를 최대 600%까지 키우고 음량을 고르게 맞춥니다. 대사는 크게, 폭발음은 작게. 모든 사이트에서 작동합니다.",
@@ -414,6 +424,7 @@ T["ko"] = {
 }
 
 T["zh_CN"] = {
+    "author": "作者：",
     "extName": "Steady Volume：音量增强与音量均衡",
     "extShortName": "Steady Volume",
     "extDescription": "将声音过小的视频音量提高至 600%，并自动均衡音量：对白更响，爆炸声更轻。适用于任何网站。",
@@ -454,6 +465,7 @@ T["zh_CN"] = {
 }
 
 T["zh_TW"] = {
+    "author": "作者：",
     "extName": "Steady Volume：音量增強與音量平衡",
     "extShortName": "Steady Volume",
     "extDescription": "將聲音太小的影片音量提高至 600%，並自動平衡音量：對白更大聲，爆炸聲更小聲。適用於任何網站。",
@@ -494,6 +506,7 @@ T["zh_TW"] = {
 }
 
 T["id"] = {
+    "author": "Pembuat:",
     "extName": "Steady Volume: penguat dan penyeimbang volume",
     "extShortName": "Steady Volume",
     "extDescription": "Menaikkan suara video yang pelan hingga 600% dan menyeimbangkan volume: dialog lebih keras, ledakan lebih pelan. Di semua situs.",
@@ -534,6 +547,7 @@ T["id"] = {
 }
 
 T["vi"] = {
+    "author": "Tác giả:",
     "extName": "Steady Volume: tăng âm lượng và cân bằng âm lượng",
     "extShortName": "Steady Volume",
     "extDescription": "Tăng âm lượng video nhỏ tiếng lên đến 600% và cân bằng âm lượng: lời thoại to hơn, tiếng nổ nhỏ hơn. Dùng trên mọi trang web.",
@@ -574,6 +588,7 @@ T["vi"] = {
 }
 
 T["hi"] = {
+    "author": "निर्माता:",
     "extName": "Steady Volume: वॉल्यूम बूस्टर और लेवलर",
     "extShortName": "Steady Volume",
     "extDescription": "धीमी आवाज़ वाले वीडियो को 600% तक तेज़ करता है और आवाज़ बराबर रखता है: संवाद तेज़, धमाके धीमे। हर साइट पर काम करता है।",
@@ -614,6 +629,7 @@ T["hi"] = {
 }
 
 T["ar"] = {
+    "author": "المطوّر:",
     "extName": "Steady Volume: مضخم الصوت وموازن مستوى الصوت",
     "extShortName": "Steady Volume",
     "extDescription": "يرفع صوت الفيديوهات المنخفضة حتى 600% ويوازن مستوى الصوت: حوار أعلى وانفجارات أخفض. يعمل على أي موقع.",

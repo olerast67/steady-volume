@@ -166,5 +166,8 @@
   },
   "statusCaptureHint": {
     "message": "Rozszerzenie nie może podłączyć się do tego filmu bezpośrednio, więc przetwarza dźwięk całej karty."
+  },
+  "author": {
+    "message": "Autor:"
   }
 }

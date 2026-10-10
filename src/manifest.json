@@ -3,7 +3,8 @@
   "name": "__MSG_extName__",
   "short_name": "__MSG_extShortName__",
   "description": "__MSG_extDescription__",
-  "version": "1.2.0",
+  "version": "1.2.1",
+  "homepage_url": "https://github.com/olerast67/steady-volume",
   "default_locale": "en",
   "icons": {
     "16": "icons/icon-16.png",

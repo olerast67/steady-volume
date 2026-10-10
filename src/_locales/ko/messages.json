@@ -166,5 +166,8 @@
   },
   "statusCaptureHint": {
     "message": "이 영상에 직접 연결할 수 없어 탭 전체의 소리를 처리합니다."
+  },
+  "author": {
+    "message": "제작자:"
   }
 }

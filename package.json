@@ -1,6 +1,6 @@
 {
   "name": "steady-volume",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "description": "Browser extension that boosts and levels the volume of video and audio on any site",
   "license": "MIT",

@@ -166,5 +166,8 @@
   },
   "statusCaptureHint": {
     "message": "この動画には直接接続できないため、タブ全体の音声を処理します。"
+  },
+  "author": {
+    "message": "作者："
   }
 }

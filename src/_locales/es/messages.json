@@ -166,5 +166,8 @@
   },
   "statusCaptureHint": {
     "message": "La extensión no puede conectarse a este vídeo directamente, así que procesa el sonido de toda la pestaña."
+  },
+  "author": {
+    "message": "Autor:"
   }
 }
