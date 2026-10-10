@@ -6,7 +6,7 @@ body:
     attributes:
       value: |
         Можно писать по-русски.
-        DRM-protected services (Netflix, paid streaming) cannot be supported: the browser hides their sound from extensions. / Сервисы с защитой DRM (Netflix, платные онлайн-кинотеатры) поддержать нельзя: браузер закрывает расширениям их звук.
+        DRM-protected video (Netflix, paid streaming): in Chrome, Edge, Yandex Browser, Opera and Brave open the extension popup while it plays, whole-tab capture starts. Firefox can't process such video. / Видео с защитой DRM (Netflix, платные онлайн-кинотеатры): в Chrome, Edge, Яндекс Браузере, Opera и Brave откройте окно расширения во время просмотра, включится захват вкладки. В Firefox такое видео обработать нельзя.
   - type: input
     id: url
     attributes:

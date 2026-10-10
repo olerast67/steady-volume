@@ -2,6 +2,13 @@
 
 Архивы собирает `npm run build`: `dist/steady-volume-<версия>-chromium.zip` для Chrome Web Store, Edge Add-ons и Opera, `dist/steady-volume-<версия>-firefox.zip` для addons.mozilla.org. Перед каждой публикацией я поднимаю `version` в `src/manifest.json` и `package.json` и ставлю тег `v<версия>`.
 
+| Магазин | Статус |
+|---|---|
+| addons.mozilla.org | Версия 1.2.1 отправлена 11 октября 2026, ждёт проверки |
+| Edge Add-ons | не отправлено |
+| Opera add-ons | не отправлено |
+| Chrome Web Store | не отправлено |
+
 | Магазин | Стоимость | Что известно о проверке | Кто получает расширение |
 |---|---|---|---|
 | Chrome Web Store | $5 один раз | От нескольких дней до недель, широкий доступ к сайтам удлиняет проверку | Chrome, Brave, Яндекс Браузер, Opera через дополнение «Install Chrome Extensions» |
@@ -26,7 +33,7 @@
 
 1. Аккаунт на https://addons.mozilla.org/developers/.
 2. Для публикации в каталоге: «Submit a New Add-on» → «On this site» → `steady-volume-<версия>-firefox.zip`. AMO может попросить исходный код, если он собран инструментами; здесь код в архиве совпадает с исходниками, сборки нет.
-3. Для подписанного `.xpi` на GitHub без каталога: в кабинете AMO «Manage API Keys» выдаёт JWT issuer и JWT secret. Я кладу их в секреты репозитория `AMO_JWT_ISSUER` и `AMO_JWT_SECRET`, после этого workflow `release.yml` подписывает `.xpi` при каждом теге.
+3. Новые версии можно отправлять из GitHub Actions. В кабинете AMO «Tools → Manage API Keys» выдаёт JWT issuer и JWT secret. Я кладу их в секреты репозитория `AMO_JWT_ISSUER` и `AMO_JWT_SECRET`, после этого workflow `release.yml` при каждом теге отправляет новую версию в каталог и не ждёт окончания проверки.
 
 В манифесте уже есть всё, что AMO требует для новых расширений с ноября 2025: `browser_specific_settings.gecko.id` и `data_collection_permissions` со значением `none`.
 

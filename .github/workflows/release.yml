@@ -29,9 +29,9 @@ jobs:
           v=$(node -p "require('./src/manifest.json').version")
           test "v$v" = "${GITHUB_REF_NAME}" || { echo "tag ${GITHUB_REF_NAME} != manifest $v"; exit 1; }
       - run: npm run build
-      - name: Sign for Firefox (unlisted)
+      - name: Submit the new version to addons.mozilla.org
         if: startsWith(github.ref, 'refs/tags/v') && env.AMO_JWT_ISSUER != ''
-        run: npx web-ext sign --source-dir build/firefox --artifacts-dir dist --channel unlisted --api-key "$AMO_JWT_ISSUER" --api-secret "$AMO_JWT_SECRET"
+        run: npx web-ext sign --source-dir build/firefox --artifacts-dir dist --channel listed --approval-timeout 0 --api-key "$AMO_JWT_ISSUER" --api-secret "$AMO_JWT_SECRET"
       - uses: actions/upload-artifact@v7
         with:
           name: steady-volume

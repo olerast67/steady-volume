@@ -24,7 +24,10 @@ The popup opens from the extension icon on the browser toolbar. If the icon is h
 
 ## Installing
 
-While the extension is in store review, install it from the archive. It takes about a minute.
+| Browser | How to install |
+|---|---|
+| Firefox | The extension is submitted to addons.mozilla.org and waits for Mozilla's review. The link will be here. Until then you can load it temporarily, see below |
+| Chrome, Edge, Yandex Browser, Opera, Brave | From the archive in developer mode, about a minute. The extension is not yet submitted to the stores for these browsers |
 
 ### Chrome, Edge, Yandex Browser, Opera, Brave
 
@@ -45,7 +48,7 @@ On every start Chrome offers to disable developer mode extensions. Click Cancel 
 
 ### Firefox
 
-Firefox 140 or newer is required. Firefox installs from a file only extensions signed by Mozilla. A signed `.xpi` will appear in the releases after the addons.mozilla.org review. Until then you can load it until the browser restarts: download `steady-volume-<version>-firefox.zip`, unpack it, open `about:debugging` → "This Firefox" → "Load Temporary Add-on" and select `manifest.json`.
+Firefox 140 or newer is required. Once Mozilla publishes the extension on addons.mozilla.org, it will install from there in one click and update itself. Until then you can load it until the browser restarts: download `steady-volume-<version>-firefox.zip`, unpack it, open `about:debugging` → "This Firefox" → "Load Temporary Add-on" and select `manifest.json`.
 
 ## Modes and settings
 
@@ -97,7 +100,18 @@ The browser hands the sound of DRM-protected video to extensions as silence. For
 | Calls and voice chats (Google Meet, Discord) | skipped | skipped |
 | Browser pages and extension stores | no | no |
 
-I tested tab capture on a dash.js sample video encrypted with ClearKey. It uses the same EME mechanism as Netflix and paid streaming protection, with an open key. I have not tested it on Netflix itself. For embedded VK Video players I checked how their requests work: the live VK player shows a bot check to an automated browser.
+The table describes how the extension is built. What I checked by hand and with tests:
+
+| What | Where checked |
+|---|---|
+| YouTube | Edge 155 in an automated test, Firefox by hand |
+| Embedded VK Video player | by hand, version 1.1.0 |
+| Test page: dialog and action, video from another server with and without CORS, player in a closed Shadow DOM | Edge 155 and Firefox 157, automated tests |
+| Tab capture on a ClearKey-encrypted video from the dash.js samples | Edge 155, automated test |
+| Netflix and streaming services with Widevine | not tested |
+| Yandex Browser, Opera, Brave, Chrome | not tested separately; they run the same Chromium engine as Edge |
+
+ClearKey uses the same EME mechanism as Netflix protection, with an open key.
 
 If a site loses its sound, turn the extension off for that site with the On this site switch, reload the page and open an issue with the page address.
 
@@ -161,7 +175,7 @@ npm run lint    # builds build/chromium and build/firefox, lints the Firefox one
 npm run build   # dist/steady-volume-<version>-chromium.zip and -firefox.zip
 ```
 
-`src/manifest.json` is written for Chromium. `scripts/build.mjs` derives the Firefox version from it: a background script without a service worker, no `tabCapture`, `offscreen` or keyboard shortcut. Pushing a `v*` tag makes GitHub Actions build the archive and attach it to a release. If the repository secrets hold AMO keys, the same run signs an `.xpi` for Firefox. Store publishing steps are in [docs/publishing.md](docs/publishing.md).
+`src/manifest.json` is written for Chromium. `scripts/build.mjs` derives the Firefox version from it: a background script without a service worker, no `tabCapture`, `offscreen` or keyboard shortcut. Pushing a `v*` tag makes GitHub Actions build the archives and attach them to a release. If the repository secrets hold addons.mozilla.org API keys, the same run submits the new version to the Firefox catalog. Store publishing steps are in [docs/publishing.md](docs/publishing.md).
 
 The extension code was written by Claude from Anthropic to my specification.
 
