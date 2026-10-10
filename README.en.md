@@ -104,8 +104,8 @@ The table describes how the extension is built. What I checked by hand and with 
 
 | What | Where checked |
 |---|---|
-| YouTube | Edge 155 in an automated test, Firefox by hand |
-| Embedded VK Video player | by hand, version 1.1.0 |
+| YouTube | Edge 155 in an automated test, Firefox by hand (latest version as of October 2026) |
+| Embedded VK Video player | Firefox by hand, extension version 1.1.0 |
 | Test page: dialog and action, video from another server with and without CORS, player in a closed Shadow DOM | Edge 155 and Firefox 157, automated tests |
 | Tab capture on a ClearKey-encrypted video from the dash.js samples | Edge 155, automated test |
 | Netflix and streaming services with Widevine | not tested |
