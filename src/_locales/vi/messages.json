@@ -1,0 +1,170 @@
+{
+  "extName": {
+    "message": "Steady Volume: tăng âm lượng và cân bằng âm lượng"
+  },
+  "extShortName": {
+    "message": "Steady Volume"
+  },
+  "extDescription": {
+    "message": "Tăng âm lượng video nhỏ tiếng lên đến 600% và cân bằng âm lượng: lời thoại to hơn, tiếng nổ nhỏ hơn. Dùng trên mọi trang web."
+  },
+  "enabled": {
+    "message": "Bật"
+  },
+  "volume": {
+    "message": "Âm lượng"
+  },
+  "leveling": {
+    "message": "Cân bằng"
+  },
+  "levelOff": {
+    "message": "Tắt"
+  },
+  "levelLight": {
+    "message": "Nhẹ"
+  },
+  "hintOff": {
+    "message": "Chỉ tăng âm lượng, giữ nguyên độ động ban đầu."
+  },
+  "hintLight": {
+    "message": "Làm mượt các bước nhảy lớn nhất, nhạc vẫn giữ độ động."
+  },
+  "dialog": {
+    "message": "Giọng nói rõ hơn"
+  },
+  "dialogHint": {
+    "message": "Bớt tiếng ù, giọng nói nổi bật hơn"
+  },
+  "site": {
+    "message": "Trên trang này"
+  },
+  "siteUnknown": {
+    "message": "trang này"
+  },
+  "statusOff": {
+    "message": "Đã tắt. Video đang phát sẽ giữ nguyên âm thanh cho đến khi bật lại."
+  },
+  "statusSiteOff": {
+    "message": "Đã tắt trên trang này."
+  },
+  "statusNone": {
+    "message": "Tab này chưa có âm thanh. Hãy phát video, tiện ích sẽ tự xử lý."
+  },
+  "statusUnsupported": {
+    "message": "Không thể xử lý trang trình duyệt và cửa hàng tiện ích."
+  },
+  "statusPlaying": {
+    "message": "Đang xử lý. Độ lớn $1 LUFS, điều chỉnh $2 dB"
+  },
+  "statusPaused": {
+    "message": "Đã kết nối, video đang tạm dừng."
+  },
+  "statusWaiting": {
+    "message": "Nhấp vào bất kỳ đâu trên trang: trình duyệt chỉ bắt đầu xử lý âm thanh sau một lần nhấp."
+  },
+  "statusDrm": {
+    "message": "Video này được bảo vệ bản quyền (DRM). Trình duyệt không cho tiện ích xử lý âm thanh của nó nên phát nguyên trạng."
+  },
+  "statusCors": {
+    "message": "Video đến từ máy chủ khác không cho phép xử lý. Phát nguyên trạng để không mất tiếng."
+  },
+  "statusStream": {
+    "message": "Cuộc gọi thoại và video được giữ nguyên."
+  },
+  "statusBusy": {
+    "message": "Trang web tự xử lý âm thanh của video này, tiện ích không thể kết nối."
+  },
+  "statusReload": {
+    "message": "Nếu mất tiếng, hãy tắt tiện ích trên trang này và tải lại trang."
+  },
+  "limiterActive": {
+    "message": "bộ giới hạn $1 dB"
+  },
+  "levelAuto": {
+    "message": "Tự động"
+  },
+  "levelNight": {
+    "message": "Đêm"
+  },
+  "levelCustom": {
+    "message": "tùy chỉnh"
+  },
+  "hintAuto": {
+    "message": "Lời thoại và cảnh hành động ở mức gần nhau. Cho phim, phim bộ và YouTube."
+  },
+  "hintNight": {
+    "message": "Mọi thứ ở cùng một mức, cảnh lớn tiếng bị giảm mạnh. Cho ban đêm và phòng ồn."
+  },
+  "hintCustom": {
+    "message": "Đã chỉnh tay trong phần tinh chỉnh. Chọn một chế độ ở trên hoặc nhấn Đặt lại."
+  },
+  "advanced": {
+    "message": "Tinh chỉnh"
+  },
+  "reset": {
+    "message": "Đặt lại tất cả"
+  },
+  "field_target": {
+    "message": "Âm lượng mục tiêu"
+  },
+  "field_maxBoost": {
+    "message": "Tăng phần nhỏ tối đa"
+  },
+  "field_maxCut": {
+    "message": "Giảm phần lớn tối đa"
+  },
+  "field_release": {
+    "message": "Thời gian hồi âm lượng"
+  },
+  "field_threshold": {
+    "message": "Ngưỡng nén"
+  },
+  "field_ratio": {
+    "message": "Tỷ lệ nén"
+  },
+  "field_ceiling": {
+    "message": "Trần bộ giới hạn"
+  },
+  "unit_LUFS": {
+    "message": "LUFS"
+  },
+  "unit_dB": {
+    "message": "dB"
+  },
+  "unit_s": {
+    "message": "giây"
+  },
+  "statusLost": {
+    "message": "Trang web đã đổi nguồn video và có thể đã mất tiếng. Hãy tải lại trang."
+  },
+  "help": {
+    "message": "Trợ giúp"
+  },
+  "donate": {
+    "message": "Ủng hộ"
+  },
+  "report": {
+    "message": "Báo lỗi"
+  },
+  "cmdCapture": {
+    "message": "Xử lý âm thanh của cả tab (bật/tắt)"
+  },
+  "captureStart": {
+    "message": "Xử lý âm thanh của cả tab"
+  },
+  "captureStop": {
+    "message": "Dừng xử lý tab"
+  },
+  "statusCaptured": {
+    "message": "Đang xử lý cả tab. Độ lớn $1 LUFS, điều chỉnh $2 dB"
+  },
+  "statusCaptureFailed": {
+    "message": "Không thể thu âm thanh của tab: $1"
+  },
+  "statusNoneCapture": {
+    "message": "Tab này chưa có âm thanh mà tiện ích có thể kết nối. Nếu video đang phát mà chưa được xử lý, hãy nhấn nút bên dưới."
+  },
+  "statusCaptureHint": {
+    "message": "Tiện ích không thể kết nối trực tiếp với video này nên xử lý âm thanh của cả tab."
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "extName": {
+    "message": "Steady Volume：音量增強與音量平衡"
+  },
+  "extShortName": {
+    "message": "Steady Volume"
+  },
+  "extDescription": {
+    "message": "將聲音太小的影片音量提高至 600%，並自動平衡音量：對白更大聲，爆炸聲更小聲。適用於任何網站。"
+  },
+  "enabled": {
+    "message": "開啟"
+  },
+  "volume": {
+    "message": "音量"
+  },
+  "leveling": {
+    "message": "音量平衡"
+  },
+  "levelOff": {
+    "message": "關閉"
+  },
+  "levelLight": {
+    "message": "輕度"
+  },
+  "hintOff": {
+    "message": "只提高音量，保留原本的動態範圍。"
+  },
+  "hintLight": {
+    "message": "只緩和最大的音量落差，音樂保留動態。"
+  },
+  "dialog": {
+    "message": "人聲更清楚"
+  },
+  "dialogHint": {
+    "message": "減少低頻轟鳴，突顯人聲"
+  },
+  "site": {
+    "message": "在此網站啟用"
+  },
+  "siteUnknown": {
+    "message": "此頁面"
+  },
+  "statusOff": {
+    "message": "已關閉。正在播放的影片會維持原音，直到重新開啟。"
+  },
+  "statusSiteOff": {
+    "message": "已在此網站關閉。"
+  },
+  "statusNone": {
+    "message": "此分頁還沒有聲音。播放影片後擴充功能會自動接手。"
+  },
+  "statusUnsupported": {
+    "message": "無法處理瀏覽器內部頁面和擴充功能商店。"
+  },
+  "statusPlaying": {
+    "message": "處理中。響度 $1 LUFS，調整 $2 dB"
+  },
+  "statusPaused": {
+    "message": "已連線，影片已暫停。"
+  },
+  "statusWaiting": {
+    "message": "請點擊頁面任意位置：瀏覽器只有在點擊後才會開始處理音訊。"
+  },
+  "statusDrm": {
+    "message": "此影片受版權保護（DRM）。瀏覽器不允許擴充功能處理其聲音，因此按原樣播放。"
+  },
+  "statusCors": {
+    "message": "此影片來自不允許處理的其他伺服器。為避免聲音消失，按原樣播放。"
+  },
+  "statusStream": {
+    "message": "不會處理語音和視訊通話。"
+  },
+  "statusBusy": {
+    "message": "網站自行處理此影片的聲音，擴充功能無法連線。"
+  },
+  "statusReload": {
+    "message": "如果聲音消失，請在此網站關閉擴充功能並重新整理頁面。"
+  },
+  "limiterActive": {
+    "message": "限制器 $1 dB"
+  },
+  "levelAuto": {
+    "message": "自動"
+  },
+  "levelNight": {
+    "message": "夜間"
+  },
+  "levelCustom": {
+    "message": "自訂"
+  },
+  "hintAuto": {
+    "message": "對白和動作場面音量接近。適合電影、影集和 YouTube。"
+  },
+  "hintNight": {
+    "message": "所有內容維持同一音量，大聲場面明顯壓低。適合夜間和吵雜的房間。"
+  },
+  "hintCustom": {
+    "message": "已在進階調整中手動設定。在上方選擇模式或按重設即可還原。"
+  },
+  "advanced": {
+    "message": "進階調整"
+  },
+  "reset": {
+    "message": "全部重設"
+  },
+  "field_target": {
+    "message": "目標響度"
+  },
+  "field_maxBoost": {
+    "message": "小聲部分最多提高"
+  },
+  "field_maxCut": {
+    "message": "大聲部分最多降低"
+  },
+  "field_release": {
+    "message": "音量回復時間"
+  },
+  "field_threshold": {
+    "message": "壓縮器臨界值"
+  },
+  "field_ratio": {
+    "message": "壓縮比"
+  },
+  "field_ceiling": {
+    "message": "限制器上限"
+  },
+  "unit_LUFS": {
+    "message": "LUFS"
+  },
+  "unit_dB": {
+    "message": "dB"
+  },
+  "unit_s": {
+    "message": "秒"
+  },
+  "statusLost": {
+    "message": "網站更換了影片來源，聲音可能已消失。請重新整理頁面。"
+  },
+  "help": {
+    "message": "說明"
+  },
+  "donate": {
+    "message": "支持"
+  },
+  "report": {
+    "message": "回報問題"
+  },
+  "cmdCapture": {
+    "message": "處理整個分頁的聲音（開/關）"
+  },
+  "captureStart": {
+    "message": "處理整個分頁的聲音"
+  },
+  "captureStop": {
+    "message": "停止處理分頁"
+  },
+  "statusCaptured": {
+    "message": "正在處理整個分頁。響度 $1 LUFS，調整 $2 dB"
+  },
+  "statusCaptureFailed": {
+    "message": "無法擷取分頁的聲音：$1"
+  },
+  "statusNoneCapture": {
+    "message": "此分頁還沒有擴充功能可以連線的聲音。如果影片正在播放但未被處理，請按下方按鈕。"
+  },
+  "statusCaptureHint": {
+    "message": "擴充功能無法直接連線到此影片，因此處理整個分頁的聲音。"
+  }
+}

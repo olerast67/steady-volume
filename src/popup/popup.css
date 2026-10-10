@@ -108,7 +108,7 @@ footer p { margin: 0 0 6px; }
 footer a { color: var(--muted); font-size: 12px; }
 
 /* AGC adjustment, centred at 0 dB, ±20 dB to the edges */
-#meter { position: relative; height: 6px; margin-bottom: 8px; border-radius: 3px; background: var(--line); }
+#meter { direction: ltr; position: relative; height: 6px; margin-bottom: 8px; border-radius: 3px; background: var(--line); }
 #meter::before { content: ""; position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--muted); }
 #meterBar { position: absolute; top: 0; bottom: 0; border-radius: 3px; background: var(--good); transition: left 0.2s, width 0.2s; }
 
@@ -142,3 +142,5 @@ button.link {
 button.link:hover { text-decoration: underline; }
 
 footer nav { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 4px; }
+output, #status { unicode-bidi: plaintext; }
+output { direction: ltr; unicode-bidi: isolate; }

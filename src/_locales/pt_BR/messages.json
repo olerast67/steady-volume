@@ -1,0 +1,170 @@
+{
+  "extName": {
+    "message": "Steady Volume: amplificador e nivelador de volume"
+  },
+  "extShortName": {
+    "message": "Steady Volume"
+  },
+  "extDescription": {
+    "message": "Aumenta o volume de vídeos baixos em até 600% e nivela o som: diálogos mais altos, explosões mais baixas. Em qualquer site."
+  },
+  "enabled": {
+    "message": "Ligado"
+  },
+  "volume": {
+    "message": "Volume"
+  },
+  "leveling": {
+    "message": "Nivelamento"
+  },
+  "levelOff": {
+    "message": "Não"
+  },
+  "levelLight": {
+    "message": "Leve"
+  },
+  "hintOff": {
+    "message": "Só amplificação, a dinâmica original continua igual."
+  },
+  "hintLight": {
+    "message": "Suaviza os maiores saltos, a música mantém sua dinâmica."
+  },
+  "dialog": {
+    "message": "Voz mais clara"
+  },
+  "dialogHint": {
+    "message": "Menos ronco, a voz vem para a frente"
+  },
+  "site": {
+    "message": "Neste site"
+  },
+  "siteUnknown": {
+    "message": "esta página"
+  },
+  "statusOff": {
+    "message": "Desligado. Vídeos que já estão tocando seguem sem mudança até você religar."
+  },
+  "statusSiteOff": {
+    "message": "Desligado neste site."
+  },
+  "statusNone": {
+    "message": "Ainda não há som nesta aba. Inicie um vídeo e a extensão vai assumi-lo."
+  },
+  "statusUnsupported": {
+    "message": "Páginas do navegador e lojas de extensões não podem ser processadas."
+  },
+  "statusPlaying": {
+    "message": "Processando. Volume $1 LUFS, ajuste $2 dB"
+  },
+  "statusPaused": {
+    "message": "Conectado, vídeo pausado."
+  },
+  "statusWaiting": {
+    "message": "Clique em qualquer lugar da página: o navegador só inicia o processamento de áudio depois de um clique."
+  },
+  "statusDrm": {
+    "message": "Este vídeo é protegido (DRM). O navegador não deixa extensões processarem o som, então ele toca sem mudança."
+  },
+  "statusCors": {
+    "message": "O vídeo vem de outro servidor que não permite o processamento. Ele toca sem mudança para o som não sumir."
+  },
+  "statusStream": {
+    "message": "Chamadas de voz e vídeo não são alteradas."
+  },
+  "statusBusy": {
+    "message": "O site processa o som deste vídeo por conta própria, a extensão não consegue se conectar."
+  },
+  "statusReload": {
+    "message": "Se o som sumir, desligue a extensão neste site e recarregue a página."
+  },
+  "limiterActive": {
+    "message": "limitador $1 dB"
+  },
+  "levelAuto": {
+    "message": "Auto"
+  },
+  "levelNight": {
+    "message": "Noite"
+  },
+  "levelCustom": {
+    "message": "personalizado"
+  },
+  "hintAuto": {
+    "message": "Diálogos e ação em um nível parecido. Para filmes, séries e YouTube."
+  },
+  "hintNight": {
+    "message": "Tudo no mesmo nível, cenas altas bem atenuadas. Para a noite e ambientes barulhentos."
+  },
+  "hintCustom": {
+    "message": "Ajustado à mão no ajuste fino. Escolha um modo acima ou toque em Redefinir."
+  },
+  "advanced": {
+    "message": "Ajuste fino"
+  },
+  "reset": {
+    "message": "Redefinir tudo"
+  },
+  "field_target": {
+    "message": "Volume alvo"
+  },
+  "field_maxBoost": {
+    "message": "Subir partes baixas em até"
+  },
+  "field_maxCut": {
+    "message": "Baixar partes altas em até"
+  },
+  "field_release": {
+    "message": "Tempo de retorno"
+  },
+  "field_threshold": {
+    "message": "Limiar do compressor"
+  },
+  "field_ratio": {
+    "message": "Taxa do compressor"
+  },
+  "field_ceiling": {
+    "message": "Teto do limitador"
+  },
+  "unit_LUFS": {
+    "message": "LUFS"
+  },
+  "unit_dB": {
+    "message": "dB"
+  },
+  "unit_s": {
+    "message": "s"
+  },
+  "statusLost": {
+    "message": "O site trocou a fonte do vídeo e o som pode ter sumido. Recarregue a página."
+  },
+  "help": {
+    "message": "Ajuda"
+  },
+  "donate": {
+    "message": "Apoiar"
+  },
+  "report": {
+    "message": "Relatar um problema"
+  },
+  "cmdCapture": {
+    "message": "Processar o som da aba inteira (ligar/desligar)"
+  },
+  "captureStart": {
+    "message": "Processar o som da aba inteira"
+  },
+  "captureStop": {
+    "message": "Parar de processar a aba"
+  },
+  "statusCaptured": {
+    "message": "Processando a aba inteira. Volume $1 LUFS, ajuste $2 dB"
+  },
+  "statusCaptureFailed": {
+    "message": "Não foi possível capturar o som da aba: $1"
+  },
+  "statusNoneCapture": {
+    "message": "Ainda não há som ao qual a extensão possa se conectar. Se um vídeo toca sem processamento, clique no botão abaixo."
+  },
+  "statusCaptureHint": {
+    "message": "A extensão não consegue se conectar a este vídeo diretamente, então processa o som da aba inteira."
+  }
+}

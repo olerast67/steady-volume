@@ -65,6 +65,8 @@ Firefox 140 or newer is required. Firefox installs from a file only extensions s
 
 The Fine-tuning section has seven sliders: target loudness (−30 to −12 LUFS), how far quiet parts are raised and loud parts lowered (up to 24 dB), gain recovery time (0.5-6 s), compressor threshold and ratio, and the limiter ceiling (−12 to 0 dB). Any change switches the mode to custom. Reset all brings back Auto, 100% and turns Clearer speech off.
 
+The popup is translated into 18 languages: English, Russian, Ukrainian, German, French, Spanish, Italian, Portuguese (Brazil), Polish, Turkish, Japanese, Korean, Chinese (Simplified and Traditional), Indonesian, Vietnamese, Hindi and Arabic. The language follows the browser settings. All translations except Russian and English were made with an AI model; corrections are welcome in `scripts/locales.py`.
+
 ## How the processing works
 
 The extension waits for a `<video>` or `<audio>` element to start playing and connects it to a Web Audio chain. Each frame of the page gets its own chain:

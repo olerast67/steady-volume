@@ -1,0 +1,170 @@
+{
+  "extName": {
+    "message": "Steady Volume: penguat dan penyeimbang volume"
+  },
+  "extShortName": {
+    "message": "Steady Volume"
+  },
+  "extDescription": {
+    "message": "Menaikkan suara video yang pelan hingga 600% dan menyeimbangkan volume: dialog lebih keras, ledakan lebih pelan. Di semua situs."
+  },
+  "enabled": {
+    "message": "Aktif"
+  },
+  "volume": {
+    "message": "Volume"
+  },
+  "leveling": {
+    "message": "Penyeimbangan"
+  },
+  "levelOff": {
+    "message": "Mati"
+  },
+  "levelLight": {
+    "message": "Ringan"
+  },
+  "hintOff": {
+    "message": "Hanya penguatan, dinamika asli tetap seperti semula."
+  },
+  "hintLight": {
+    "message": "Menghaluskan lonjakan terbesar, musik tetap punya dinamika."
+  },
+  "dialog": {
+    "message": "Suara lebih jelas"
+  },
+  "dialogHint": {
+    "message": "Lebih sedikit dengung, suara lebih menonjol"
+  },
+  "site": {
+    "message": "Di situs ini"
+  },
+  "siteUnknown": {
+    "message": "halaman ini"
+  },
+  "statusOff": {
+    "message": "Mati. Video yang sedang diputar tetap tanpa perubahan sampai diaktifkan lagi."
+  },
+  "statusSiteOff": {
+    "message": "Mati di situs ini."
+  },
+  "statusNone": {
+    "message": "Belum ada suara di tab ini. Putar video dan ekstensi akan mengambilnya otomatis."
+  },
+  "statusUnsupported": {
+    "message": "Halaman browser dan toko ekstensi tidak dapat diproses."
+  },
+  "statusPlaying": {
+    "message": "Memproses. Kenyaringan $1 LUFS, penyesuaian $2 dB"
+  },
+  "statusPaused": {
+    "message": "Terhubung, video dijeda."
+  },
+  "statusWaiting": {
+    "message": "Klik di mana saja pada halaman: browser hanya memulai pemrosesan audio setelah klik."
+  },
+  "statusDrm": {
+    "message": "Video ini dilindungi salinan (DRM). Browser tidak mengizinkan ekstensi memproses suaranya, jadi diputar tanpa perubahan."
+  },
+  "statusCors": {
+    "message": "Video berasal dari server lain yang tidak mengizinkan pemrosesan. Diputar tanpa perubahan agar suara tidak hilang."
+  },
+  "statusStream": {
+    "message": "Panggilan suara dan video tidak diubah."
+  },
+  "statusBusy": {
+    "message": "Situs memproses suara video ini sendiri, ekstensi tidak dapat terhubung."
+  },
+  "statusReload": {
+    "message": "Jika suara hilang, matikan ekstensi untuk situs ini dan muat ulang halaman."
+  },
+  "limiterActive": {
+    "message": "limiter $1 dB"
+  },
+  "levelAuto": {
+    "message": "Otomatis"
+  },
+  "levelNight": {
+    "message": "Malam"
+  },
+  "levelCustom": {
+    "message": "kustom"
+  },
+  "hintAuto": {
+    "message": "Dialog dan aksi di tingkat yang mirip. Untuk film, serial, dan YouTube."
+  },
+  "hintNight": {
+    "message": "Semua di satu tingkat, adegan keras sangat diredam. Untuk malam hari dan ruangan bising."
+  },
+  "hintCustom": {
+    "message": "Diatur manual di pengaturan lanjutan. Pilih mode di atas atau tekan Atur ulang."
+  },
+  "advanced": {
+    "message": "Pengaturan lanjutan"
+  },
+  "reset": {
+    "message": "Atur ulang semua"
+  },
+  "field_target": {
+    "message": "Volume target"
+  },
+  "field_maxBoost": {
+    "message": "Naikkan bagian pelan hingga"
+  },
+  "field_maxCut": {
+    "message": "Turunkan bagian keras hingga"
+  },
+  "field_release": {
+    "message": "Waktu pemulihan"
+  },
+  "field_threshold": {
+    "message": "Ambang kompresor"
+  },
+  "field_ratio": {
+    "message": "Rasio kompresor"
+  },
+  "field_ceiling": {
+    "message": "Batas limiter"
+  },
+  "unit_LUFS": {
+    "message": "LUFS"
+  },
+  "unit_dB": {
+    "message": "dB"
+  },
+  "unit_s": {
+    "message": "dtk"
+  },
+  "statusLost": {
+    "message": "Situs mengganti sumber video dan suara mungkin hilang. Muat ulang halaman."
+  },
+  "help": {
+    "message": "Bantuan"
+  },
+  "donate": {
+    "message": "Dukung"
+  },
+  "report": {
+    "message": "Laporkan masalah"
+  },
+  "cmdCapture": {
+    "message": "Proses suara seluruh tab (aktif/mati)"
+  },
+  "captureStart": {
+    "message": "Proses suara seluruh tab"
+  },
+  "captureStop": {
+    "message": "Hentikan pemrosesan tab"
+  },
+  "statusCaptured": {
+    "message": "Memproses seluruh tab. Kenyaringan $1 LUFS, penyesuaian $2 dB"
+  },
+  "statusCaptureFailed": {
+    "message": "Tidak dapat merekam suara tab: $1"
+  },
+  "statusNoneCapture": {
+    "message": "Belum ada suara yang bisa dihubungkan ekstensi di tab ini. Jika video diputar tanpa diproses, tekan tombol di bawah."
+  },
+  "statusCaptureHint": {
+    "message": "Ekstensi tidak dapat terhubung langsung ke video ini, jadi memproses suara seluruh tab."
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "extName": {
+    "message": "Steady Volume: amplificador y nivelador de volumen"
+  },
+  "extShortName": {
+    "message": "Steady Volume"
+  },
+  "extDescription": {
+    "message": "Sube el volumen de vídeos bajos hasta un 600 % y lo nivela: diálogos más altos, explosiones más bajas. Funciona en cualquier web."
+  },
+  "enabled": {
+    "message": "Activado"
+  },
+  "volume": {
+    "message": "Volumen"
+  },
+  "leveling": {
+    "message": "Nivelación"
+  },
+  "levelOff": {
+    "message": "No"
+  },
+  "levelLight": {
+    "message": "Suave"
+  },
+  "hintOff": {
+    "message": "Solo amplificación, la dinámica original se mantiene."
+  },
+  "hintLight": {
+    "message": "Suaviza los saltos más grandes, la música conserva su dinámica."
+  },
+  "dialog": {
+    "message": "Voz más clara"
+  },
+  "dialogHint": {
+    "message": "Menos retumbe, la voz pasa al frente"
+  },
+  "site": {
+    "message": "En este sitio"
+  },
+  "siteUnknown": {
+    "message": "esta página"
+  },
+  "statusOff": {
+    "message": "Desactivado. Los vídeos que ya suenan siguen sin cambios hasta que lo vuelvas a activar."
+  },
+  "statusSiteOff": {
+    "message": "Desactivado en este sitio."
+  },
+  "statusNone": {
+    "message": "Todavía no hay sonido en esta pestaña. Reproduce un vídeo y la extensión lo detectará."
+  },
+  "statusUnsupported": {
+    "message": "Las páginas del navegador y las tiendas de extensiones no se pueden procesar."
+  },
+  "statusPlaying": {
+    "message": "Procesando. Sonoridad $1 LUFS, ajuste $2 dB"
+  },
+  "statusPaused": {
+    "message": "Conectado, vídeo en pausa."
+  },
+  "statusWaiting": {
+    "message": "Haz clic en cualquier parte de la página: el navegador solo inicia el procesado de audio tras un clic."
+  },
+  "statusDrm": {
+    "message": "Este vídeo está protegido (DRM). El navegador no deja a las extensiones procesar su sonido, así que suena sin cambios."
+  },
+  "statusCors": {
+    "message": "El vídeo viene de otro servidor que no permite procesarlo. Suena sin cambios para que no se pierda el audio."
+  },
+  "statusStream": {
+    "message": "Las llamadas de voz y vídeo no se tocan."
+  },
+  "statusBusy": {
+    "message": "El sitio procesa el sonido de este vídeo por su cuenta y la extensión no puede conectarse."
+  },
+  "statusReload": {
+    "message": "Si el sonido desaparece, desactiva la extensión en este sitio y recarga la página."
+  },
+  "limiterActive": {
+    "message": "limitador $1 dB"
+  },
+  "levelAuto": {
+    "message": "Auto"
+  },
+  "levelNight": {
+    "message": "Noche"
+  },
+  "levelCustom": {
+    "message": "personalizado"
+  },
+  "hintAuto": {
+    "message": "Diálogos y acción a un nivel parecido. Para películas, series y YouTube."
+  },
+  "hintNight": {
+    "message": "Todo al mismo nivel, escenas fuertes muy atenuadas. Para la noche y lugares ruidosos."
+  },
+  "hintCustom": {
+    "message": "Ajustado a mano en el ajuste fino. Elige un modo arriba o pulsa Restablecer."
+  },
+  "advanced": {
+    "message": "Ajuste fino"
+  },
+  "reset": {
+    "message": "Restablecer todo"
+  },
+  "field_target": {
+    "message": "Volumen objetivo"
+  },
+  "field_maxBoost": {
+    "message": "Subir lo bajo hasta"
+  },
+  "field_maxCut": {
+    "message": "Bajar lo alto hasta"
+  },
+  "field_release": {
+    "message": "Tiempo de recuperación"
+  },
+  "field_threshold": {
+    "message": "Umbral del compresor"
+  },
+  "field_ratio": {
+    "message": "Ratio del compresor"
+  },
+  "field_ceiling": {
+    "message": "Techo del limitador"
+  },
+  "unit_LUFS": {
+    "message": "LUFS"
+  },
+  "unit_dB": {
+    "message": "dB"
+  },
+  "unit_s": {
+    "message": "s"
+  },
+  "statusLost": {
+    "message": "El sitio cambió la fuente del vídeo y puede que el sonido se haya perdido. Recarga la página."
+  },
+  "help": {
+    "message": "Ayuda"
+  },
+  "donate": {
+    "message": "Apoyar"
+  },
+  "report": {
+    "message": "Informar de un problema"
+  },
+  "cmdCapture": {
+    "message": "Procesar el sonido de toda la pestaña (activar/desactivar)"
+  },
+  "captureStart": {
+    "message": "Procesar el sonido de toda la pestaña"
+  },
+  "captureStop": {
+    "message": "Dejar de procesar la pestaña"
+  },
+  "statusCaptured": {
+    "message": "Procesando toda la pestaña. Sonoridad $1 LUFS, ajuste $2 dB"
+  },
+  "statusCaptureFailed": {
+    "message": "No se pudo capturar el sonido de la pestaña: $1"
+  },
+  "statusNoneCapture": {
+    "message": "Aún no hay sonido al que la extensión pueda conectarse. Si un vídeo suena sin procesar, pulsa el botón de abajo."
+  },
+  "statusCaptureHint": {
+    "message": "La extensión no puede conectarse a este vídeo directamente, así que procesa el sonido de toda la pestaña."
+  }
+}

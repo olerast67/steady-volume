@@ -1,0 +1,170 @@
+{
+  "extName": {
+    "message": "Steady Volume: Lautstärke-Booster und Ausgleich"
+  },
+  "extShortName": {
+    "message": "Steady Volume"
+  },
+  "extDescription": {
+    "message": "Macht leise Videos bis zu 600 % lauter und gleicht die Lautstärke aus: Dialoge lauter, Explosionen leiser. Auf jeder Website."
+  },
+  "enabled": {
+    "message": "An"
+  },
+  "volume": {
+    "message": "Lautstärke"
+  },
+  "leveling": {
+    "message": "Ausgleich"
+  },
+  "levelOff": {
+    "message": "Aus"
+  },
+  "levelLight": {
+    "message": "Leicht"
+  },
+  "hintOff": {
+    "message": "Nur Verstärkung, die ursprüngliche Dynamik bleibt erhalten."
+  },
+  "hintLight": {
+    "message": "Glättet die größten Sprünge, Musik behält ihre Dynamik."
+  },
+  "dialog": {
+    "message": "Klarere Sprache"
+  },
+  "dialogHint": {
+    "message": "Weniger Dröhnen, Stimmen treten hervor"
+  },
+  "site": {
+    "message": "Auf dieser Website"
+  },
+  "siteUnknown": {
+    "message": "diese Seite"
+  },
+  "statusOff": {
+    "message": "Ausgeschaltet. Laufende Videos spielen unverändert, bis Sie wieder einschalten."
+  },
+  "statusSiteOff": {
+    "message": "Für diese Website ausgeschaltet."
+  },
+  "statusNone": {
+    "message": "Auf diesem Tab läuft noch kein Ton. Starten Sie ein Video, die Erweiterung übernimmt es automatisch."
+  },
+  "statusUnsupported": {
+    "message": "Browserseiten und Erweiterungs-Stores können nicht bearbeitet werden."
+  },
+  "statusPlaying": {
+    "message": "Aktiv. Lautheit $1 LUFS, Anpassung $2 dB"
+  },
+  "statusPaused": {
+    "message": "Verbunden, Video pausiert."
+  },
+  "statusWaiting": {
+    "message": "Klicken Sie irgendwo auf die Seite: Der Browser startet die Tonbearbeitung erst nach einem Klick."
+  },
+  "statusDrm": {
+    "message": "Dieses Video ist kopiergeschützt (DRM). Der Browser lässt Erweiterungen den Ton nicht bearbeiten, es läuft unverändert."
+  },
+  "statusCors": {
+    "message": "Das Video kommt von einem Server, der die Bearbeitung nicht erlaubt. Es läuft unverändert, damit der Ton nicht verschwindet."
+  },
+  "statusStream": {
+    "message": "Sprach- und Videoanrufe bleiben unberührt."
+  },
+  "statusBusy": {
+    "message": "Die Website bearbeitet den Ton dieses Videos selbst, die Erweiterung kann sich nicht verbinden."
+  },
+  "statusReload": {
+    "message": "Wenn der Ton verschwunden ist, schalten Sie die Erweiterung für diese Website aus und laden Sie die Seite neu."
+  },
+  "limiterActive": {
+    "message": "Limiter $1 dB"
+  },
+  "levelAuto": {
+    "message": "Auto"
+  },
+  "levelNight": {
+    "message": "Nacht"
+  },
+  "levelCustom": {
+    "message": "eigene"
+  },
+  "hintAuto": {
+    "message": "Dialoge und Action ungefähr gleich laut. Für Filme, Serien und YouTube."
+  },
+  "hintNight": {
+    "message": "Alles auf einem Pegel, laute Szenen stark gedämpft. Für die Nacht und laute Räume."
+  },
+  "hintCustom": {
+    "message": "Von Hand in der Feineinstellung eingestellt. Wählen Sie oben einen Modus oder setzen Sie zurück."
+  },
+  "advanced": {
+    "message": "Feineinstellung"
+  },
+  "reset": {
+    "message": "Alles zurücksetzen"
+  },
+  "field_target": {
+    "message": "Ziellautstärke"
+  },
+  "field_maxBoost": {
+    "message": "Leises anheben um bis zu"
+  },
+  "field_maxCut": {
+    "message": "Lautes absenken um bis zu"
+  },
+  "field_release": {
+    "message": "Rückkehrzeit"
+  },
+  "field_threshold": {
+    "message": "Kompressor-Schwelle"
+  },
+  "field_ratio": {
+    "message": "Kompressor-Verhältnis"
+  },
+  "field_ceiling": {
+    "message": "Limiter-Obergrenze"
+  },
+  "unit_LUFS": {
+    "message": "LUFS"
+  },
+  "unit_dB": {
+    "message": "dB"
+  },
+  "unit_s": {
+    "message": "s"
+  },
+  "statusLost": {
+    "message": "Die Website hat die Videoquelle gewechselt, der Ton ist evtl. weg. Laden Sie die Seite neu."
+  },
+  "help": {
+    "message": "Hilfe"
+  },
+  "donate": {
+    "message": "Unterstützen"
+  },
+  "report": {
+    "message": "Problem melden"
+  },
+  "cmdCapture": {
+    "message": "Ton des ganzen Tabs bearbeiten (an/aus)"
+  },
+  "captureStart": {
+    "message": "Ton des ganzen Tabs bearbeiten"
+  },
+  "captureStop": {
+    "message": "Tab-Bearbeitung beenden"
+  },
+  "statusCaptured": {
+    "message": "Der ganze Tab wird bearbeitet. Lautheit $1 LUFS, Anpassung $2 dB"
+  },
+  "statusCaptureFailed": {
+    "message": "Ton des Tabs konnte nicht erfasst werden: $1"
+  },
+  "statusNoneCapture": {
+    "message": "Auf diesem Tab gibt es noch keinen Ton, mit dem sich die Erweiterung verbinden kann. Läuft ein Video ohne Bearbeitung, klicken Sie unten."
+  },
+  "statusCaptureHint": {
+    "message": "Die Erweiterung kann sich nicht direkt mit diesem Video verbinden und bearbeitet deshalb den Ton des ganzen Tabs."
+  }
+}

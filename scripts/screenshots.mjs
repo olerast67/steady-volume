@@ -2,7 +2,7 @@
 // node scripts/screenshots.mjs [msedge|chrome|chromium]   (run `node test/make-movie.mjs` first)
 import { chromium } from 'playwright-core';
 import { spawn } from 'node:child_process';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -15,7 +15,11 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const server = spawn(process.execPath, [join(root, 'test/serve.mjs'), String(PORT)], { stdio: 'ignore' });
 await sleep(500);
 
-for (const [lang, suffix] of [['ru', ''], ['en-US', '-en']]) {
+// Extra languages after the channel are saved to test/out for a layout check: node scripts/screenshots.mjs msedge de fr ar
+const extra = process.argv.slice(3);
+const runs = extra.length ? extra.map((l) => [l, '-' + l, join(root, 'test', 'out')]) : [['ru', '', join(root, 'docs')], ['en-US', '-en', join(root, 'docs')]];
+mkdirSync(join(root, 'test', 'out'), { recursive: true });
+for (const [lang, suffix, outDir] of runs) {
   const profile = mkdtempSync(join(tmpdir(), 'sv-shot-'));
   const context = await chromium.launchPersistentContext(profile, {
     channel: channel === 'chromium' ? undefined : channel,
@@ -41,10 +45,10 @@ for (const [lang, suffix] of [['ru', ''], ['en-US', '-en']]) {
     });
     await popup.goto(`chrome-extension://${id}/popup/popup.html?tab=${tabId}`);
     await sleep(2500);
-    await popup.screenshot({ path: join(root, 'docs', `popup${suffix}.png`), fullPage: true });
+    await popup.screenshot({ path: join(outDir, `popup${suffix}.png`), fullPage: true });
     await popup.click('#advanced summary');
     await sleep(300);
-    await popup.screenshot({ path: join(root, 'docs', `popup-advanced${suffix}.png`), fullPage: true });
+    await popup.screenshot({ path: join(outDir, `popup-advanced${suffix}.png`), fullPage: true });
     console.log('saved', lang);
   } finally {
     await context.close();

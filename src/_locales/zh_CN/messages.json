@@ -1,0 +1,170 @@
+{
+  "extName": {
+    "message": "Steady Volume：音量增强与音量均衡"
+  },
+  "extShortName": {
+    "message": "Steady Volume"
+  },
+  "extDescription": {
+    "message": "将声音过小的视频音量提高至 600%，并自动均衡音量：对白更响，爆炸声更轻。适用于任何网站。"
+  },
+  "enabled": {
+    "message": "开启"
+  },
+  "volume": {
+    "message": "音量"
+  },
+  "leveling": {
+    "message": "音量均衡"
+  },
+  "levelOff": {
+    "message": "关闭"
+  },
+  "levelLight": {
+    "message": "轻度"
+  },
+  "hintOff": {
+    "message": "仅提升音量，保留原有的动态范围。"
+  },
+  "hintLight": {
+    "message": "只平滑最大的音量跳变，音乐保留动态。"
+  },
+  "dialog": {
+    "message": "人声更清晰"
+  },
+  "dialogHint": {
+    "message": "减少低频轰鸣，突出人声"
+  },
+  "site": {
+    "message": "在此网站启用"
+  },
+  "siteUnknown": {
+    "message": "此页面"
+  },
+  "statusOff": {
+    "message": "已关闭。正在播放的视频将保持原声，直到重新开启。"
+  },
+  "statusSiteOff": {
+    "message": "已在此网站关闭。"
+  },
+  "statusNone": {
+    "message": "此标签页还没有声音。播放视频后扩展会自动接管。"
+  },
+  "statusUnsupported": {
+    "message": "无法处理浏览器内部页面和扩展商店。"
+  },
+  "statusPlaying": {
+    "message": "处理中。响度 $1 LUFS，调整 $2 dB"
+  },
+  "statusPaused": {
+    "message": "已连接，视频已暂停。"
+  },
+  "statusWaiting": {
+    "message": "请点击页面任意位置：浏览器只有在点击后才会启动音频处理。"
+  },
+  "statusDrm": {
+    "message": "此视频受版权保护（DRM）。浏览器不允许扩展处理其声音，因此按原样播放。"
+  },
+  "statusCors": {
+    "message": "此视频来自不允许处理的其他服务器。为避免声音消失，按原样播放。"
+  },
+  "statusStream": {
+    "message": "不会处理语音和视频通话。"
+  },
+  "statusBusy": {
+    "message": "网站自行处理此视频的声音，扩展无法连接。"
+  },
+  "statusReload": {
+    "message": "如果声音消失，请在此网站关闭扩展并刷新页面。"
+  },
+  "limiterActive": {
+    "message": "限制器 $1 dB"
+  },
+  "levelAuto": {
+    "message": "自动"
+  },
+  "levelNight": {
+    "message": "夜间"
+  },
+  "levelCustom": {
+    "message": "自定义"
+  },
+  "hintAuto": {
+    "message": "对白和动作场面音量接近。适合电影、剧集和 YouTube。"
+  },
+  "hintNight": {
+    "message": "所有内容保持同一音量，大声场面明显压低。适合夜间和嘈杂环境。"
+  },
+  "hintCustom": {
+    "message": "已在精细调节中手动设置。在上方选择模式或点击重置即可恢复。"
+  },
+  "advanced": {
+    "message": "精细调节"
+  },
+  "reset": {
+    "message": "全部重置"
+  },
+  "field_target": {
+    "message": "目标响度"
+  },
+  "field_maxBoost": {
+    "message": "小声部分最多提升"
+  },
+  "field_maxCut": {
+    "message": "大声部分最多降低"
+  },
+  "field_release": {
+    "message": "音量恢复时间"
+  },
+  "field_threshold": {
+    "message": "压缩器阈值"
+  },
+  "field_ratio": {
+    "message": "压缩比"
+  },
+  "field_ceiling": {
+    "message": "限制器上限"
+  },
+  "unit_LUFS": {
+    "message": "LUFS"
+  },
+  "unit_dB": {
+    "message": "dB"
+  },
+  "unit_s": {
+    "message": "秒"
+  },
+  "statusLost": {
+    "message": "网站更换了视频源，声音可能已消失。请刷新页面。"
+  },
+  "help": {
+    "message": "帮助"
+  },
+  "donate": {
+    "message": "支持"
+  },
+  "report": {
+    "message": "报告问题"
+  },
+  "cmdCapture": {
+    "message": "处理整个标签页的声音（开/关）"
+  },
+  "captureStart": {
+    "message": "处理整个标签页的声音"
+  },
+  "captureStop": {
+    "message": "停止处理标签页"
+  },
+  "statusCaptured": {
+    "message": "正在处理整个标签页。响度 $1 LUFS，调整 $2 dB"
+  },
+  "statusCaptureFailed": {
+    "message": "无法捕获标签页的声音：$1"
+  },
+  "statusNoneCapture": {
+    "message": "此标签页还没有扩展可以连接的声音。如果视频正在播放但未被处理，请点击下方按钮。"
+  },
+  "statusCaptureHint": {
+    "message": "扩展无法直接连接到此视频，因此处理整个标签页的声音。"
+  }
+}

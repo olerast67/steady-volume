@@ -1,0 +1,170 @@
+{
+  "extName": {
+    "message": "Steady Volume : amplificateur et égaliseur de volume"
+  },
+  "extShortName": {
+    "message": "Steady Volume"
+  },
+  "extDescription": {
+    "message": "Augmente le son des vidéos trop faibles jusqu'à 600 % et égalise le volume : dialogues plus forts, explosions plus douces."
+  },
+  "enabled": {
+    "message": "Activé"
+  },
+  "volume": {
+    "message": "Volume"
+  },
+  "leveling": {
+    "message": "Égalisation"
+  },
+  "levelOff": {
+    "message": "Non"
+  },
+  "levelLight": {
+    "message": "Léger"
+  },
+  "hintOff": {
+    "message": "Amplification seule, la dynamique d'origine est conservée."
+  },
+  "hintLight": {
+    "message": "Lisse les plus grands écarts, la musique garde sa dynamique."
+  },
+  "dialog": {
+    "message": "Voix plus claires"
+  },
+  "dialogHint": {
+    "message": "Moins de grondement, la voix ressort"
+  },
+  "site": {
+    "message": "Sur ce site"
+  },
+  "siteUnknown": {
+    "message": "cette page"
+  },
+  "statusOff": {
+    "message": "Désactivé. Les vidéos en cours restent inchangées jusqu'à la réactivation."
+  },
+  "statusSiteOff": {
+    "message": "Désactivé sur ce site."
+  },
+  "statusNone": {
+    "message": "Pas encore de son dans cet onglet. Lancez une vidéo, l'extension la prendra en charge."
+  },
+  "statusUnsupported": {
+    "message": "Les pages du navigateur et les boutiques d'extensions ne peuvent pas être traitées."
+  },
+  "statusPlaying": {
+    "message": "Traitement en cours. Sonie $1 LUFS, ajustement $2 dB"
+  },
+  "statusPaused": {
+    "message": "Connecté, vidéo en pause."
+  },
+  "statusWaiting": {
+    "message": "Cliquez n'importe où sur la page : le navigateur ne lance le traitement audio qu'après un clic."
+  },
+  "statusDrm": {
+    "message": "Cette vidéo est protégée (DRM). Le navigateur interdit aux extensions de traiter son son, elle est lue sans changement."
+  },
+  "statusCors": {
+    "message": "La vidéo vient d'un autre serveur qui interdit le traitement. Elle est lue sans changement pour ne pas perdre le son."
+  },
+  "statusStream": {
+    "message": "Les appels audio et vidéo ne sont pas modifiés."
+  },
+  "statusBusy": {
+    "message": "Le site traite lui-même le son de cette vidéo, l'extension ne peut pas s'y connecter."
+  },
+  "statusReload": {
+    "message": "Si le son a disparu, désactivez l'extension sur ce site et rechargez la page."
+  },
+  "limiterActive": {
+    "message": "limiteur $1 dB"
+  },
+  "levelAuto": {
+    "message": "Auto"
+  },
+  "levelNight": {
+    "message": "Nuit"
+  },
+  "levelCustom": {
+    "message": "personnalisé"
+  },
+  "hintAuto": {
+    "message": "Dialogues et action à un niveau proche. Pour les films, les séries et YouTube."
+  },
+  "hintNight": {
+    "message": "Tout au même niveau, scènes fortes très atténuées. Pour la nuit et les pièces bruyantes."
+  },
+  "hintCustom": {
+    "message": "Réglé à la main dans le réglage fin. Choisissez un mode ci-dessus ou réinitialisez."
+  },
+  "advanced": {
+    "message": "Réglage fin"
+  },
+  "reset": {
+    "message": "Tout réinitialiser"
+  },
+  "field_target": {
+    "message": "Volume cible"
+  },
+  "field_maxBoost": {
+    "message": "Monter les passages faibles de"
+  },
+  "field_maxCut": {
+    "message": "Baisser les passages forts de"
+  },
+  "field_release": {
+    "message": "Temps de retour"
+  },
+  "field_threshold": {
+    "message": "Seuil du compresseur"
+  },
+  "field_ratio": {
+    "message": "Taux du compresseur"
+  },
+  "field_ceiling": {
+    "message": "Plafond du limiteur"
+  },
+  "unit_LUFS": {
+    "message": "LUFS"
+  },
+  "unit_dB": {
+    "message": "dB"
+  },
+  "unit_s": {
+    "message": "s"
+  },
+  "statusLost": {
+    "message": "Le site a changé la source de la vidéo et le son a peut-être disparu. Rechargez la page."
+  },
+  "help": {
+    "message": "Aide"
+  },
+  "donate": {
+    "message": "Soutenir"
+  },
+  "report": {
+    "message": "Signaler un problème"
+  },
+  "cmdCapture": {
+    "message": "Traiter le son de tout l'onglet (activer/désactiver)"
+  },
+  "captureStart": {
+    "message": "Traiter le son de tout l'onglet"
+  },
+  "captureStop": {
+    "message": "Arrêter le traitement de l'onglet"
+  },
+  "statusCaptured": {
+    "message": "Tout l'onglet est traité. Sonie $1 LUFS, ajustement $2 dB"
+  },
+  "statusCaptureFailed": {
+    "message": "Impossible de capturer le son de l'onglet : $1"
+  },
+  "statusNoneCapture": {
+    "message": "Aucun son auquel l'extension peut se connecter pour l'instant. Si une vidéo joue sans traitement, cliquez sur le bouton ci-dessous."
+  },
+  "statusCaptureHint": {
+    "message": "L'extension ne peut pas se connecter directement à cette vidéo, elle traite donc le son de tout l'onglet."
+  }
+}

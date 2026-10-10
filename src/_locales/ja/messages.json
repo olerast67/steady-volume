@@ -1,0 +1,170 @@
+{
+  "extName": {
+    "message": "Steady Volume: 音量ブースター＆音量平準化"
+  },
+  "extShortName": {
+    "message": "Steady Volume"
+  },
+  "extDescription": {
+    "message": "小さい動画の音量を最大600%まで上げ、音量を自動で揃えます。セリフは大きく、爆発音は小さく。どのサイトでも使えます。"
+  },
+  "enabled": {
+    "message": "オン"
+  },
+  "volume": {
+    "message": "音量"
+  },
+  "leveling": {
+    "message": "音量の平準化"
+  },
+  "levelOff": {
+    "message": "オフ"
+  },
+  "levelLight": {
+    "message": "弱"
+  },
+  "hintOff": {
+    "message": "音量を上げるだけで、元の強弱はそのままです。"
+  },
+  "hintLight": {
+    "message": "大きな音量差だけを和らげ、音楽の強弱は保ちます。"
+  },
+  "dialog": {
+    "message": "声を聞き取りやすく"
+  },
+  "dialogHint": {
+    "message": "低音のこもりを減らし、声を前に出します"
+  },
+  "site": {
+    "message": "このサイトで有効"
+  },
+  "siteUnknown": {
+    "message": "このページ"
+  },
+  "statusOff": {
+    "message": "オフです。再生中の動画は、オンに戻すまで元の音のまま再生されます。"
+  },
+  "statusSiteOff": {
+    "message": "このサイトではオフです。"
+  },
+  "statusNone": {
+    "message": "このタブではまだ音が出ていません。動画を再生すると自動で処理されます。"
+  },
+  "statusUnsupported": {
+    "message": "ブラウザーの設定ページや拡張機能ストアでは処理できません。"
+  },
+  "statusPlaying": {
+    "message": "処理中。ラウドネス $1 LUFS、補正 $2 dB"
+  },
+  "statusPaused": {
+    "message": "接続済み。動画は一時停止中です。"
+  },
+  "statusWaiting": {
+    "message": "ページのどこかをクリックしてください。ブラウザーはクリック後にしか音声処理を開始しません。"
+  },
+  "statusDrm": {
+    "message": "この動画はコピー保護（DRM）されています。ブラウザーが拡張機能による音声処理を許可しないため、そのまま再生されます。"
+  },
+  "statusCors": {
+    "message": "この動画は処理を許可しない別のサーバーから配信されています。音が消えないよう、そのまま再生されます。"
+  },
+  "statusStream": {
+    "message": "音声通話・ビデオ通話には手を加えません。"
+  },
+  "statusBusy": {
+    "message": "サイト自身がこの動画の音声を処理しているため、拡張機能は接続できません。"
+  },
+  "statusReload": {
+    "message": "音が消えた場合は、このサイトで拡張機能をオフにしてページを再読み込みしてください。"
+  },
+  "limiterActive": {
+    "message": "リミッター $1 dB"
+  },
+  "levelAuto": {
+    "message": "自動"
+  },
+  "levelNight": {
+    "message": "夜間"
+  },
+  "levelCustom": {
+    "message": "カスタム"
+  },
+  "hintAuto": {
+    "message": "セリフとアクションをほぼ同じ音量に。映画、ドラマ、YouTube向け。"
+  },
+  "hintNight": {
+    "message": "すべてを同じ音量に揃え、大きな場面を強く抑えます。夜間や騒がしい部屋向け。"
+  },
+  "hintCustom": {
+    "message": "詳細設定で手動調整しています。上のモードを選ぶか、リセットしてください。"
+  },
+  "advanced": {
+    "message": "詳細設定"
+  },
+  "reset": {
+    "message": "すべてリセット"
+  },
+  "field_target": {
+    "message": "目標ラウドネス"
+  },
+  "field_maxBoost": {
+    "message": "小さい部分の持ち上げ（最大）"
+  },
+  "field_maxCut": {
+    "message": "大きい部分の抑制（最大）"
+  },
+  "field_release": {
+    "message": "音量が戻るまでの時間"
+  },
+  "field_threshold": {
+    "message": "コンプレッサーのしきい値"
+  },
+  "field_ratio": {
+    "message": "圧縮比"
+  },
+  "field_ceiling": {
+    "message": "リミッター上限"
+  },
+  "unit_LUFS": {
+    "message": "LUFS"
+  },
+  "unit_dB": {
+    "message": "dB"
+  },
+  "unit_s": {
+    "message": "秒"
+  },
+  "statusLost": {
+    "message": "サイトが動画のソースを切り替えたため、音が出ていない可能性があります。ページを再読み込みしてください。"
+  },
+  "help": {
+    "message": "ヘルプ"
+  },
+  "donate": {
+    "message": "支援する"
+  },
+  "report": {
+    "message": "問題を報告"
+  },
+  "cmdCapture": {
+    "message": "タブ全体の音声を処理（オン/オフ）"
+  },
+  "captureStart": {
+    "message": "タブ全体の音声を処理"
+  },
+  "captureStop": {
+    "message": "タブの処理を停止"
+  },
+  "statusCaptured": {
+    "message": "タブ全体を処理中。ラウドネス $1 LUFS、補正 $2 dB"
+  },
+  "statusCaptureFailed": {
+    "message": "タブの音声を取得できませんでした: $1"
+  },
+  "statusNoneCapture": {
+    "message": "このタブには拡張機能が接続できる音声がまだありません。動画が処理されずに再生されている場合は、下のボタンを押してください。"
+  },
+  "statusCaptureHint": {
+    "message": "この動画には直接接続できないため、タブ全体の音声を処理します。"
+  }
+}

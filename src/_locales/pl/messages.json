@@ -1,0 +1,170 @@
+{
+  "extName": {
+    "message": "Steady Volume: wzmacniacz i wyrównywacz głośności"
+  },
+  "extShortName": {
+    "message": "Steady Volume"
+  },
+  "extDescription": {
+    "message": "Podgłaśnia ciche filmy do 600% i wyrównuje głośność: dialogi głośniej, wybuchy ciszej. Działa na każdej stronie."
+  },
+  "enabled": {
+    "message": "Włączone"
+  },
+  "volume": {
+    "message": "Głośność"
+  },
+  "leveling": {
+    "message": "Wyrównywanie"
+  },
+  "levelOff": {
+    "message": "Wył."
+  },
+  "levelLight": {
+    "message": "Lekko"
+  },
+  "hintOff": {
+    "message": "Tylko wzmocnienie, oryginalna dynamika zostaje bez zmian."
+  },
+  "hintLight": {
+    "message": "Wygładza największe skoki, muzyka zachowuje dynamikę."
+  },
+  "dialog": {
+    "message": "Wyraźniejsza mowa"
+  },
+  "dialogHint": {
+    "message": "Mniej dudnienia, głos wychodzi na przód"
+  },
+  "site": {
+    "message": "Na tej stronie"
+  },
+  "siteUnknown": {
+    "message": "ta strona"
+  },
+  "statusOff": {
+    "message": "Wyłączone. Odtwarzane filmy grają bez zmian, dopóki nie włączysz ponownie."
+  },
+  "statusSiteOff": {
+    "message": "Wyłączone na tej stronie."
+  },
+  "statusNone": {
+    "message": "Na tej karcie nie ma jeszcze dźwięku. Włącz film, a rozszerzenie samo go przejmie."
+  },
+  "statusUnsupported": {
+    "message": "Stron przeglądarki i sklepów z rozszerzeniami nie można przetwarzać."
+  },
+  "statusPlaying": {
+    "message": "Przetwarzanie. Głośność $1 LUFS, korekta $2 dB"
+  },
+  "statusPaused": {
+    "message": "Połączono, film wstrzymany."
+  },
+  "statusWaiting": {
+    "message": "Kliknij w dowolnym miejscu strony: przeglądarka uruchamia przetwarzanie dźwięku dopiero po kliknięciu."
+  },
+  "statusDrm": {
+    "message": "Ten film jest chroniony (DRM). Przeglądarka nie pozwala rozszerzeniom przetwarzać jego dźwięku, więc gra bez zmian."
+  },
+  "statusCors": {
+    "message": "Film pochodzi z innego serwera, który nie pozwala na przetwarzanie. Gra bez zmian, żeby dźwięk nie zniknął."
+  },
+  "statusStream": {
+    "message": "Rozmowy głosowe i wideo pozostają nietknięte."
+  },
+  "statusBusy": {
+    "message": "Strona sama przetwarza dźwięk tego filmu, rozszerzenie nie może się podłączyć."
+  },
+  "statusReload": {
+    "message": "Jeśli dźwięk zniknął, wyłącz rozszerzenie na tej stronie i odśwież ją."
+  },
+  "limiterActive": {
+    "message": "limiter $1 dB"
+  },
+  "levelAuto": {
+    "message": "Auto"
+  },
+  "levelNight": {
+    "message": "Noc"
+  },
+  "levelCustom": {
+    "message": "własne"
+  },
+  "hintAuto": {
+    "message": "Dialogi i akcja na podobnym poziomie. Do filmów, seriali i YouTube."
+  },
+  "hintNight": {
+    "message": "Wszystko na jednym poziomie, głośne sceny mocno ściszone. Na noc i do głośnych pomieszczeń."
+  },
+  "hintCustom": {
+    "message": "Ustawione ręcznie w dokładnych ustawieniach. Wybierz tryb powyżej lub zresetuj."
+  },
+  "advanced": {
+    "message": "Dokładne ustawienia"
+  },
+  "reset": {
+    "message": "Resetuj wszystko"
+  },
+  "field_target": {
+    "message": "Docelowa głośność"
+  },
+  "field_maxBoost": {
+    "message": "Podnoś ciche fragmenty do"
+  },
+  "field_maxCut": {
+    "message": "Ściszaj głośne fragmenty do"
+  },
+  "field_release": {
+    "message": "Czas powrotu"
+  },
+  "field_threshold": {
+    "message": "Próg kompresora"
+  },
+  "field_ratio": {
+    "message": "Stopień kompresji"
+  },
+  "field_ceiling": {
+    "message": "Pułap limitera"
+  },
+  "unit_LUFS": {
+    "message": "LUFS"
+  },
+  "unit_dB": {
+    "message": "dB"
+  },
+  "unit_s": {
+    "message": "s"
+  },
+  "statusLost": {
+    "message": "Strona zmieniła źródło filmu i dźwięk mógł zniknąć. Odśwież stronę."
+  },
+  "help": {
+    "message": "Pomoc"
+  },
+  "donate": {
+    "message": "Wesprzyj"
+  },
+  "report": {
+    "message": "Zgłoś problem"
+  },
+  "cmdCapture": {
+    "message": "Przetwarzaj dźwięk całej karty (wł./wył.)"
+  },
+  "captureStart": {
+    "message": "Przetwarzaj dźwięk całej karty"
+  },
+  "captureStop": {
+    "message": "Zatrzymaj przetwarzanie karty"
+  },
+  "statusCaptured": {
+    "message": "Przetwarzanie całej karty. Głośność $1 LUFS, korekta $2 dB"
+  },
+  "statusCaptureFailed": {
+    "message": "Nie udało się przechwycić dźwięku karty: $1"
+  },
+  "statusNoneCapture": {
+    "message": "Na tej karcie nie ma jeszcze dźwięku, do którego rozszerzenie może się podłączyć. Jeśli film gra bez przetwarzania, kliknij przycisk poniżej."
+  },
+  "statusCaptureHint": {
+    "message": "Rozszerzenie nie może podłączyć się do tego filmu bezpośrednio, więc przetwarza dźwięk całej karty."
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "extName": {
+    "message": "Steady Volume: amplificatore e livellatore del volume"
+  },
+  "extShortName": {
+    "message": "Steady Volume"
+  },
+  "extDescription": {
+    "message": "Alza i video troppo bassi fino al 600% e livella il volume: dialoghi più forti, esplosioni più basse. Funziona su ogni sito."
+  },
+  "enabled": {
+    "message": "Attivo"
+  },
+  "volume": {
+    "message": "Volume"
+  },
+  "leveling": {
+    "message": "Livellamento"
+  },
+  "levelOff": {
+    "message": "No"
+  },
+  "levelLight": {
+    "message": "Leggero"
+  },
+  "hintOff": {
+    "message": "Solo amplificazione, la dinamica originale resta com'è."
+  },
+  "hintLight": {
+    "message": "Smussa i salti più grandi, la musica mantiene la sua dinamica."
+  },
+  "dialog": {
+    "message": "Voce più chiara"
+  },
+  "dialogHint": {
+    "message": "Meno rimbombo, la voce viene in primo piano"
+  },
+  "site": {
+    "message": "Su questo sito"
+  },
+  "siteUnknown": {
+    "message": "questa pagina"
+  },
+  "statusOff": {
+    "message": "Disattivato. I video in riproduzione restano invariati finché non lo riattivi."
+  },
+  "statusSiteOff": {
+    "message": "Disattivato su questo sito."
+  },
+  "statusNone": {
+    "message": "Ancora nessun audio in questa scheda. Avvia un video e l'estensione lo prenderà in carico."
+  },
+  "statusUnsupported": {
+    "message": "Le pagine del browser e gli store delle estensioni non possono essere elaborati."
+  },
+  "statusPlaying": {
+    "message": "In elaborazione. Loudness $1 LUFS, regolazione $2 dB"
+  },
+  "statusPaused": {
+    "message": "Collegato, video in pausa."
+  },
+  "statusWaiting": {
+    "message": "Fai clic in un punto qualsiasi della pagina: il browser avvia l'elaborazione audio solo dopo un clic."
+  },
+  "statusDrm": {
+    "message": "Questo video è protetto (DRM). Il browser non permette alle estensioni di elaborarne l'audio, quindi suona invariato."
+  },
+  "statusCors": {
+    "message": "Il video arriva da un altro server che non consente l'elaborazione. Suona invariato per non perdere l'audio."
+  },
+  "statusStream": {
+    "message": "Le chiamate vocali e video non vengono toccate."
+  },
+  "statusBusy": {
+    "message": "Il sito elabora da solo l'audio di questo video, l'estensione non può collegarsi."
+  },
+  "statusReload": {
+    "message": "Se l'audio è sparito, disattiva l'estensione su questo sito e ricarica la pagina."
+  },
+  "limiterActive": {
+    "message": "limitatore $1 dB"
+  },
+  "levelAuto": {
+    "message": "Auto"
+  },
+  "levelNight": {
+    "message": "Notte"
+  },
+  "levelCustom": {
+    "message": "personalizzato"
+  },
+  "hintAuto": {
+    "message": "Dialoghi e azione a un livello simile. Per film, serie e YouTube."
+  },
+  "hintNight": {
+    "message": "Tutto allo stesso livello, scene forti molto attenuate. Per la notte e gli ambienti rumorosi."
+  },
+  "hintCustom": {
+    "message": "Impostato a mano nella regolazione fine. Scegli una modalità sopra o premi Ripristina."
+  },
+  "advanced": {
+    "message": "Regolazione fine"
+  },
+  "reset": {
+    "message": "Ripristina tutto"
+  },
+  "field_target": {
+    "message": "Volume obiettivo"
+  },
+  "field_maxBoost": {
+    "message": "Alza le parti basse fino a"
+  },
+  "field_maxCut": {
+    "message": "Abbassa le parti forti fino a"
+  },
+  "field_release": {
+    "message": "Tempo di ritorno"
+  },
+  "field_threshold": {
+    "message": "Soglia del compressore"
+  },
+  "field_ratio": {
+    "message": "Rapporto del compressore"
+  },
+  "field_ceiling": {
+    "message": "Tetto del limitatore"
+  },
+  "unit_LUFS": {
+    "message": "LUFS"
+  },
+  "unit_dB": {
+    "message": "dB"
+  },
+  "unit_s": {
+    "message": "s"
+  },
+  "statusLost": {
+    "message": "Il sito ha cambiato la sorgente del video e l'audio potrebbe essere sparito. Ricarica la pagina."
+  },
+  "help": {
+    "message": "Aiuto"
+  },
+  "donate": {
+    "message": "Sostieni"
+  },
+  "report": {
+    "message": "Segnala un problema"
+  },
+  "cmdCapture": {
+    "message": "Elabora l'audio di tutta la scheda (attiva/disattiva)"
+  },
+  "captureStart": {
+    "message": "Elabora l'audio di tutta la scheda"
+  },
+  "captureStop": {
+    "message": "Interrompi l'elaborazione della scheda"
+  },
+  "statusCaptured": {
+    "message": "Elaborazione di tutta la scheda. Loudness $1 LUFS, regolazione $2 dB"
+  },
+  "statusCaptureFailed": {
+    "message": "Impossibile catturare l'audio della scheda: $1"
+  },
+  "statusNoneCapture": {
+    "message": "Ancora nessun audio a cui l'estensione possa collegarsi. Se un video suona senza elaborazione, premi il pulsante qui sotto."
+  },
+  "statusCaptureHint": {
+    "message": "L'estensione non può collegarsi direttamente a questo video, quindi elabora l'audio di tutta la scheda."
+  }
+}

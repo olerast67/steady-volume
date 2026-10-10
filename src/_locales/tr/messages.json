@@ -1,0 +1,170 @@
+{
+  "extName": {
+    "message": "Steady Volume: ses yükseltici ve ses dengeleyici"
+  },
+  "extShortName": {
+    "message": "Steady Volume"
+  },
+  "extDescription": {
+    "message": "Sessiz videoları %600'e kadar yükseltir ve sesi dengeler: diyaloglar daha yüksek, patlamalar daha alçak. Her sitede çalışır."
+  },
+  "enabled": {
+    "message": "Açık"
+  },
+  "volume": {
+    "message": "Ses"
+  },
+  "leveling": {
+    "message": "Dengeleme"
+  },
+  "levelOff": {
+    "message": "Kapalı"
+  },
+  "levelLight": {
+    "message": "Hafif"
+  },
+  "hintOff": {
+    "message": "Sadece yükseltme, orijinal dinamik aynen kalır."
+  },
+  "hintLight": {
+    "message": "En büyük sıçramaları yumuşatır, müzik dinamiğini korur."
+  },
+  "dialog": {
+    "message": "Daha net konuşma"
+  },
+  "dialogHint": {
+    "message": "Daha az uğultu, ses öne çıkar"
+  },
+  "site": {
+    "message": "Bu sitede"
+  },
+  "siteUnknown": {
+    "message": "bu sayfa"
+  },
+  "statusOff": {
+    "message": "Kapalı. Oynayan videolar siz tekrar açana kadar değişmeden oynar."
+  },
+  "statusSiteOff": {
+    "message": "Bu sitede kapalı."
+  },
+  "statusNone": {
+    "message": "Bu sekmede henüz ses yok. Bir video başlatın, eklenti onu otomatik alır."
+  },
+  "statusUnsupported": {
+    "message": "Tarayıcı sayfaları ve eklenti mağazaları işlenemez."
+  },
+  "statusPlaying": {
+    "message": "İşleniyor. Ses düzeyi $1 LUFS, ayar $2 dB"
+  },
+  "statusPaused": {
+    "message": "Bağlandı, video duraklatıldı."
+  },
+  "statusWaiting": {
+    "message": "Sayfada herhangi bir yere tıklayın: tarayıcı ses işlemeyi ancak bir tıklamadan sonra başlatır."
+  },
+  "statusDrm": {
+    "message": "Bu video kopya korumalı (DRM). Tarayıcı eklentilerin sesini işlemesine izin vermez, bu yüzden değişmeden oynar."
+  },
+  "statusCors": {
+    "message": "Video, işlemeye izin vermeyen başka bir sunucudan geliyor. Ses kaybolmasın diye değişmeden oynar."
+  },
+  "statusStream": {
+    "message": "Sesli ve görüntülü aramalara dokunulmaz."
+  },
+  "statusBusy": {
+    "message": "Site bu videonun sesini kendisi işliyor, eklenti bağlanamıyor."
+  },
+  "statusReload": {
+    "message": "Ses kaybolursa eklentiyi bu sitede kapatıp sayfayı yenileyin."
+  },
+  "limiterActive": {
+    "message": "limiter $1 dB"
+  },
+  "levelAuto": {
+    "message": "Otomatik"
+  },
+  "levelNight": {
+    "message": "Gece"
+  },
+  "levelCustom": {
+    "message": "özel"
+  },
+  "hintAuto": {
+    "message": "Diyaloglar ve aksiyon benzer seviyede. Filmler, diziler ve YouTube için."
+  },
+  "hintNight": {
+    "message": "Her şey tek seviyede, yüksek sahneler çok kısılır. Gece ve gürültülü odalar için."
+  },
+  "hintCustom": {
+    "message": "İnce ayarda elle ayarlandı. Yukarıdan bir mod seçin veya sıfırlayın."
+  },
+  "advanced": {
+    "message": "İnce ayar"
+  },
+  "reset": {
+    "message": "Tümünü sıfırla"
+  },
+  "field_target": {
+    "message": "Hedef ses düzeyi"
+  },
+  "field_maxBoost": {
+    "message": "Alçak kısımları yükselt, en çok"
+  },
+  "field_maxCut": {
+    "message": "Yüksek kısımları kıs, en çok"
+  },
+  "field_release": {
+    "message": "Geri dönüş süresi"
+  },
+  "field_threshold": {
+    "message": "Kompresör eşiği"
+  },
+  "field_ratio": {
+    "message": "Kompresör oranı"
+  },
+  "field_ceiling": {
+    "message": "Limiter tavanı"
+  },
+  "unit_LUFS": {
+    "message": "LUFS"
+  },
+  "unit_dB": {
+    "message": "dB"
+  },
+  "unit_s": {
+    "message": "sn"
+  },
+  "statusLost": {
+    "message": "Site video kaynağını değiştirdi ve ses kaybolmuş olabilir. Sayfayı yenileyin."
+  },
+  "help": {
+    "message": "Yardım"
+  },
+  "donate": {
+    "message": "Destek ol"
+  },
+  "report": {
+    "message": "Sorun bildir"
+  },
+  "cmdCapture": {
+    "message": "Tüm sekmenin sesini işle (aç/kapat)"
+  },
+  "captureStart": {
+    "message": "Tüm sekmenin sesini işle"
+  },
+  "captureStop": {
+    "message": "Sekme işlemeyi durdur"
+  },
+  "statusCaptured": {
+    "message": "Tüm sekme işleniyor. Ses düzeyi $1 LUFS, ayar $2 dB"
+  },
+  "statusCaptureFailed": {
+    "message": "Sekmenin sesi yakalanamadı: $1"
+  },
+  "statusNoneCapture": {
+    "message": "Bu sekmede eklentinin bağlanabileceği bir ses henüz yok. Bir video işlenmeden oynuyorsa aşağıdaki düğmeye basın."
+  },
+  "statusCaptureHint": {
+    "message": "Eklenti bu videoya doğrudan bağlanamıyor, bu yüzden tüm sekmenin sesini işliyor."
+  }
+}

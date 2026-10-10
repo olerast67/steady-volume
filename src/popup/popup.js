@@ -22,6 +22,7 @@ const CAPTURE_FOR = new Set(['drm', 'cors', 'busy', 'lost']);
 
 for (const el of document.querySelectorAll('[data-i18n]')) el.textContent = t(el.dataset.i18n);
 document.documentElement.lang = api.i18n.getUILanguage();
+document.documentElement.dir = t('@@bidi_dir'); // rtl for Arabic
 
 // Sliders of the fine-tuning panel, built from the limits the engine accepts.
 for (const [key, [min, max, step]] of Object.entries(CUSTOM_FIELDS)) {
