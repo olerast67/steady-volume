@@ -4,7 +4,7 @@
 
 | Магазин | Статус |
 |---|---|
-| addons.mozilla.org | Версия 1.2.1 отправлена 11 октября 2026, ждёт проверки |
+| addons.mozilla.org | Версия 1.2.1 одобрена 13 октября 2026, [страница в каталоге](https://addons.mozilla.org/firefox/addon/steady-volume/) |
 | Edge Add-ons | не отправлено |
 | Opera add-ons | не отправлено |
 | Chrome Web Store | не отправлено |

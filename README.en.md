@@ -1,6 +1,7 @@
 # Steady Volume
 
 [![Release](https://img.shields.io/github/v/release/olerast67/steady-volume)](https://github.com/olerast67/steady-volume/releases/latest)
+[![Firefox](https://img.shields.io/amo/v/steady-volume?label=Firefox)](https://addons.mozilla.org/firefox/addon/steady-volume/)
 [![License MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 ![Chrome, Edge, Yandex Browser, Opera, Brave, Firefox](https://img.shields.io/badge/Chrome%20%7C%20Edge%20%7C%20Yandex%20%7C%20Opera%20%7C%20Firefox-supported-blue)
 
@@ -26,7 +27,7 @@ The popup opens from the extension icon on the browser toolbar. If the icon is h
 
 | Browser | How to install |
 |---|---|
-| Firefox | The extension is submitted to addons.mozilla.org and waits for Mozilla's review. The link will be here. Until then you can load it temporarily, see below |
+| Firefox | [From addons.mozilla.org](https://addons.mozilla.org/firefox/addon/steady-volume/) in one click, updates itself |
 | Chrome, Edge, Yandex Browser, Opera, Brave | From the archive in developer mode, about a minute. The extension is not yet submitted to the stores for these browsers |
 
 ### Chrome, Edge, Yandex Browser, Opera, Brave
@@ -48,7 +49,9 @@ On every start Chrome offers to disable developer mode extensions. Click Cancel 
 
 ### Firefox
 
-Firefox 140 or newer is required. Once Mozilla publishes the extension on addons.mozilla.org, it will install from there in one click and update itself. Until then you can load it until the browser restarts: download `steady-volume-<version>-firefox.zip`, unpack it, open `about:debugging` → "This Firefox" → "Load Temporary Add-on" and select `manifest.json`.
+Firefox 140 or newer is required. Open the [extension page on addons.mozilla.org](https://addons.mozilla.org/firefox/addon/steady-volume/) and click "Add to Firefox". Firefox installs new versions by itself.
+
+A build from the repository that is not in the catalog yet can be loaded until the browser restarts: download `steady-volume-<version>-firefox.zip`, unpack it, open `about:debugging` → "This Firefox" → "Load Temporary Add-on" and select `manifest.json`.
 
 ## Modes and settings
 

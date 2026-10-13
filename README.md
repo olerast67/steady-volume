@@ -1,6 +1,7 @@
 # Ровный звук
 
 [![Релиз](https://img.shields.io/github/v/release/olerast67/steady-volume?label=%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F)](https://github.com/olerast67/steady-volume/releases/latest)
+[![Firefox](https://img.shields.io/amo/v/steady-volume?label=Firefox)](https://addons.mozilla.org/firefox/addon/steady-volume/)
 [![Лицензия MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 ![Chrome, Edge, Яндекс Браузер, Opera, Brave, Firefox](https://img.shields.io/badge/Chrome%20%7C%20Edge%20%7C%20Yandex%20%7C%20Opera%20%7C%20Firefox-supported-blue)
 
@@ -26,7 +27,7 @@
 
 | Браузер | Как поставить |
 |---|---|
-| Firefox | Расширение отправлено на addons.mozilla.org и ждёт проверки Mozilla. Ссылка появится здесь. До этого его можно загрузить на время, инструкция ниже |
+| Firefox | [С addons.mozilla.org](https://addons.mozilla.org/firefox/addon/steady-volume/) в одно нажатие, обновляется само |
 | Chrome, Edge, Яндекс Браузер, Opera, Brave | Из архива в режиме разработчика, около минуты. В магазины для этих браузеров расширение ещё не отправлено |
 
 ### Chrome, Edge, Яндекс Браузер, Opera, Brave
@@ -48,7 +49,9 @@
 
 ### Firefox
 
-Нужен Firefox 140 или новее. Когда Mozilla опубликует расширение на addons.mozilla.org, оно будет ставиться оттуда в одно нажатие и обновляться само. До этого его можно загрузить на время, до перезапуска браузера: скачайте `steady-volume-<версия>-firefox.zip`, распакуйте, откройте `about:debugging` → «Этот Firefox» → «Загрузить временное дополнение» и выберите `manifest.json`.
+Нужен Firefox 140 или новее. Откройте [страницу расширения на addons.mozilla.org](https://addons.mozilla.org/firefox/addon/steady-volume/) и нажмите «Добавить в Firefox». Новые версии Firefox ставит сам.
+
+Сборку из репозитория, которой ещё нет в каталоге, можно загрузить на время, до перезапуска браузера: скачайте `steady-volume-<версия>-firefox.zip`, распакуйте, откройте `about:debugging` → «Этот Firefox» → «Загрузить временное дополнение» и выберите `manifest.json`.
 
 ## Режимы и настройки
 
