@@ -189,3 +189,5 @@ MIT, see [LICENSE](LICENSE).
 ## If something does not work
 
 Open an [issue](https://github.com/olerast67/steady-volume/issues/new/choose) with the page address, your browser and its version, and the text from the bottom of the popup while the video plays.
+
+[Report a bug](https://olerast.com/security)

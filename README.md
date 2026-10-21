@@ -189,3 +189,5 @@ MIT, текст в [LICENSE](LICENSE).
 ## Если что-то не работает
 
 Откройте [issue](https://github.com/olerast67/steady-volume/issues/new/choose) и укажите адрес страницы, браузер с версией и текст из нижней части окна расширения во время воспроизведения.
+
+[Сообщить о баге](https://olerast.com/security)
